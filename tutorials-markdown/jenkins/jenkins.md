@@ -1,6 +1,6 @@
 summary: 如何用 Jenkins + Zadig 分分钟搞定测试环境
-id: jenkins
-categories: jenkins
+id: Jenkins
+categories: Jenkins
 environments: Web
 status: Published
 feedback link: https://github.com/koderover/zadig-bootcamp/issues
