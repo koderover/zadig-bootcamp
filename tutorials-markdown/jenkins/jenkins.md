@@ -8,6 +8,9 @@ feedback link: https://github.com/koderover/zadig-bootcamp/issues
 # 如何用 Jenkins + Zadig 分分钟搞定测试环境
 
 ## 概述
+
+Duration: 0:01:00
+
 本文主要介绍如何在 Zadig 上快速接入 Jenkins 工作流，实现持续交付。Jenkins 本身并非云原生设计，对于大规模微服务上云场景，Jenkins 的能力不足以支撑整个研发过程。使用 Jenkins + Zadig 进行产品交付，可以为开发提供高并发的工作流和面向服务的集成环境，方便开发日常调试，不再为缺少测试环境，抢占测试环境而困扰。
 
 ![jenkins](./img/jenkins.png)
@@ -16,11 +19,15 @@ feedback link: https://github.com/koderover/zadig-bootcamp/issues
 
 ## 准备工作
 
+Duration: 0:02:00
+
 1. 服务的 Jenkins Pipeline
 2. 服务的 Kubernetes Yaml 文件：[https://github.com/koderover/zadig/tree/main/examples/voting-app/freestyle-k8s-specifications](https://github.com/koderover/zadig/tree/main/examples/voting-app/freestyle-k8s-specifications)
 
 
 ## 集成 Jenkins
+
+Duration: 0:02:00
 
 - 登录 Jenkins，在用户配置中，生成一个 API Token，如下图所示。
 
@@ -33,6 +40,9 @@ feedback link: https://github.com/koderover/zadig-bootcamp/issues
 ![add-jenkins-server](./img/add_jenkins_server.png)
 
 ## 项目配置
+
+Duration: 0:02:00
+
 - 创建项目，voting-app 是用 Kubernetes Yaml 部署的项目，具体内容如下图所示。
 
 ![create-project](./img/create_project.png)
@@ -42,6 +52,9 @@ feedback link: https://github.com/koderover/zadig-bootcamp/issues
 ![succeeded-create-project](./img/succeeded_to_create_project.png)
 
 ## 创建服务
+
+Duration: 0:03:00
+
 - 创建服务，选择从 Github 仓库导入服务的 Kubernetes Yaml。点击 `仓库托管`，在弹框中选择代码仓库和服务 Yaml 所在的文件目录，点击加载。
 
 ![add-service-1](./img/add_service_1.png)
@@ -68,11 +81,16 @@ feedback link: https://github.com/koderover/zadig-bootcamp/issues
 
 ## 加入运行环境
 
+Duration: 0:01:00
+
 - 进入「加入运行环境」，系统根据以上配置，自动创建 2 套环境和 3 条工作流，具体如下图所示：
 
 ![succeeded-create-env-workflow](./img/succeeded_to_create_env_workflow.png)
 
 ## 工作流交付
+
+Duration: 0:01:00
+
 - 点击运行 dev 工作流，来完成 dev 环境的持续交付，如下图所示。
 
 ![run-task](./img/run_task_1.png)
@@ -94,6 +112,8 @@ feedback link: https://github.com/koderover/zadig-bootcamp/issues
 ![run-task](./img/run_task_5.png)
 
 ## 添加测试，挂接工作流
+
+Duration: 0:03:00
 
 - 添加自动化测试用例
 
