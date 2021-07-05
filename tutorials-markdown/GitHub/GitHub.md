@@ -5,7 +5,7 @@ environments: Web
 status: Published
 feedback link: https://github.com/koderover/zadig-bootcamp/issues
 
-# 如何使用 GitHub + Zadig 实现产品及持续交付
+# 如何使用 GitHub + Zadig 实现产品级持续交付
 
 ## 概述
 本文介绍 GitHub 仓库管理的项目如何在 Zadig 上快速搭建，下面以 Voting 项目为例，该项目包含 Python, Redis, Postgres, Node.js, and .Net 等相对典型的微服务应用程序组合。以下步骤包含从 Code 到 Ship 的整个过程的演示。
