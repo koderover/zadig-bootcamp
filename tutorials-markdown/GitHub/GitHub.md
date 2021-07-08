@@ -8,14 +8,22 @@ feedback link: https://github.com/koderover/zadig-bootcamp/issues
 # 如何使用 GitHub + Zadig 实现产品级持续交付
 
 ## 概述
+
+Duration: 0:01:00
+
 本文介绍 GitHub 仓库管理的项目如何在 Zadig 上快速搭建，下面以 Voting 项目为例，该项目包含 Python, Redis, Postgres, Node.js, and .Net 等相对典型的微服务应用程序组合。以下步骤包含从 Code 到 Ship 的整个过程的演示。
 
 ## 准备工作
+
+Duration: 0:02:00
+
 - 我们提供了[项目案例源码](https://github.com/koderover/Zadig/tree/master/examples/voting-app) 供您直接使用，该代码仓库主要包含
   * 服务 Yaml 文件： [`https://github.com/koderover/Zadig/tree/master/examples/voting-app/freestyle-k8s-specifications`](https://github.com/koderover/Zadig/tree/master/examples/voting-app/freestyle-k8s-specifications)
   * 服务 Dockerfile 文件：业务服务目录内有一个对应的 Dockerfile 文件。
 
 ## 接入 GitHub 代码源
+
+Duration: 0:05:00
 
 ### 新建 GitHub OAuth 应用程序
 
@@ -78,6 +86,8 @@ feedback link: https://github.com/koderover/zadig-bootcamp/issues
 
 ## 产品交付-项目配置
 
+Duration: 0:01:00
+
 进入 zadig 系统。
 
 ![onboarding-1](./img/voting_onboarding_1.png)
@@ -89,6 +99,8 @@ feedback link: https://github.com/koderover/zadig-bootcamp/issues
 ![onboarding-4](./img/voting_onboarding_4.png)
 
 ## 产品交付-创建服务与服务构建
+
+Duration: 0:03:00
 
 这里我们需要为以下 5 个服务添加服务配置：
 
@@ -138,6 +150,8 @@ docker push $IMAGE
 
 ## 产品交付-加入运行环境
 
+Duration: 0:01:00
+
 - 点击向导的“下一步”。这时，Zadig 会根据你的配置，创建两套环境（dev，qa），以及相关工作流。
 
 ![onboarding-6](./img/voting_onboarding_6.png)
@@ -147,6 +161,8 @@ docker push $IMAGE
 ![onboarding-7](./img/voting_onboarding_7.png)
 
 ## 产品交付-工作流交付
+
+Duration: 0:01:00
 
 - 点击“运行”，可以运行工作流。
 
@@ -172,6 +188,8 @@ docker push $IMAGE
 
 ## 配置自动触发工作流
 
+Duration: 0:02:00
+
 Positive
 : 前提条件：配置 GitHub 的 Webhook，Webhook 配置请参考 [GitHub Webhook](https://docs.koderover.com/zadig/settings/webhook-config/#github-webhook-%E9%85%8D%E7%BD%AE)
 
@@ -194,6 +212,8 @@ Positive
 ![trigger-4](./img/voting_trigger_4.png)
 
 ## 改动代码，触发工作流
+
+Duration: 0:02:00
 
 我们下面对 vote 服务中 Dog 一栏的颜色做改动。
 

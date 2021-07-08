@@ -9,15 +9,21 @@ feedback link: https://github.com/koderover/zadig-bootcamp/issues
 
 ## 概述
 
+Duration: 0:01:00
+
 本文介绍如何在 Zadig 上快速搭建 Spring Boot 项目。Spring Boot 是构建 Java 后端应用程序的一种非常流行的框架，本文案例项目主要包含 maven 构建的 worker 、DB(postgres) 以及 Redis 这三个服务，以下步骤包含从 Code 到 Ship 的整个过程的演示
 
 ## 准备工作
+
+Duration: 0:02:00
 
 - 项目案例源码： [`https://github.com/koderover/Zadig/tree/master/examples/voting-app/worker`](https://github.com/koderover/Zadig/tree/master/examples/voting-app/worker) （也可配置自己的私有仓库，然后[集成代码源](https://docs.koderover.com/zadig/settings/codehost/#gitlab-%E9%9B%86%E6%88%90)）
 - 服务 Yaml 文件：[`https://github.com/koderover/Zadig/tree/master/examples/voting-app/freestyle-k8s-specifications/worker`](https://github.com/koderover/Zadig/tree/master/examples/voting-app/freestyle-k8s-specifications/worker)
 - 服务 Dockerfile 文件：[`https://github.com/koderover/Zadig/blob/master/examples/voting-app/worker/Dockerfile.j`](https://github.com/koderover/Zadig/blob/master/examples/voting-app/worker/Dockerfile.j)
 
 ## 产品交付-项目配置
+
+Duration: 0:02:00
 
 - 创建项目，具体内容如下图所示：
 
@@ -27,6 +33,8 @@ feedback link: https://github.com/koderover/zadig-bootcamp/issues
 
 ![创建项目](./img/springboot_succeeded_to_create_project.png "创建项目成功提示")
 ## 产品交付-创建服务
+
+Duration: 0:02:00
 
 - 创建服务，如下图所示：
 
@@ -64,11 +72,15 @@ Positive
 
 ## 产品交付-加入运行环境
 
+Duration: 0:01:00
+
 - 进入「加入运行环境」，系统会自动创建两套环境和三条工作流，两套集成环境分别给开发和测试使用，三条工作流也会自动绑定对应的开发环境以达到持续交付的目的。具体如下图所示：
 
 ![创建环境](./img/springboot_create_project_result.png "创建环境")
 
 ## 产品交付-工作流交付
+
+Duration: 0:01:00
 
 - 点击运行第一条工作流，来完成 dev 环境的持续交付，点击执行任务
 
@@ -80,6 +92,8 @@ Positive
 到此，您已熟悉 Zadig 的基本功能了，下面将展示如何配置自动触发工作流。
 
 ## 配置自动触发工作流
+
+Duration: 0:04:00
 
 - 创建触发器，修改 dev 工作流添加触发器，系统目前支持 push 和 pull_request 两种事件，具体如下图所示：
 
