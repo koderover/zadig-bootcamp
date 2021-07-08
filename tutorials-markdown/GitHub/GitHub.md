@@ -46,7 +46,7 @@ feedback link: https://github.com/koderover/zadig-bootcamp/issues
 - Authorization CallBack URL： `http://[koderover.yours.com]/api/directory/codehosts/callback`
 - 点击创建
 
-### 步骤 3：获取 Client ID、Client Secret 信息
+### 获取 Client ID、Client Secret 信息
 
 应用创建成功后，GitHub 会返回应用的基本信息，点击 `Generate a new client secret` 生成 `Client Secret`。
 
