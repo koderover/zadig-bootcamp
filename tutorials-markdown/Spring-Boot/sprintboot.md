@@ -21,7 +21,7 @@ Duration: 0:02:00
 - 服务 Yaml 文件：[`https://github.com/koderover/Zadig/tree/master/examples/voting-app/freestyle-k8s-specifications/worker`](https://github.com/koderover/Zadig/tree/master/examples/voting-app/freestyle-k8s-specifications/worker)
 - 服务 Dockerfile 文件：[`https://github.com/koderover/Zadig/blob/master/examples/voting-app/worker/Dockerfile.j`](https://github.com/koderover/Zadig/blob/master/examples/voting-app/worker/Dockerfile.j)
 
-## 产品交付-项目配置
+## 项目配置
 
 Duration: 0:02:00
 
@@ -32,7 +32,7 @@ Duration: 0:02:00
 - 接下来会看到创建成功的提示：
 
 ![创建项目](./img/springboot_succeeded_to_create_project.png "创建项目成功提示")
-## 产品交付-创建服务
+## 创建服务
 
 Duration: 0:02:00
 
@@ -70,7 +70,7 @@ Positive
 
 - 添加成功后，点击下一步，完成服务配置。
 
-## 产品交付-加入运行环境
+## 加入运行环境
 
 Duration: 0:01:00
 
@@ -78,7 +78,7 @@ Duration: 0:01:00
 
 ![创建环境](./img/springboot_create_project_result.png "创建环境")
 
-## 产品交付-工作流交付
+## 工作流交付
 
 Duration: 0:01:00
 

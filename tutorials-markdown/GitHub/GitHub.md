@@ -84,7 +84,7 @@ Duration: 0:05:00
 点击授权按钮，同意授权后，GitHub 会跳转到 Zadig 系统，至此 GitHub 集成完毕。
 
 
-## 产品交付-项目配置
+## 项目配置
 
 Duration: 0:01:00
 
@@ -98,7 +98,7 @@ Duration: 0:01:00
 ![onboarding-3](./img/voting_onboarding_3.png)
 ![onboarding-4](./img/voting_onboarding_4.png)
 
-## 产品交付-创建服务与服务构建
+## 创建服务与服务构建
 
 Duration: 0:03:00
 
@@ -148,11 +148,11 @@ docker push $IMAGE
 
 重复以上配置服务构建过程，完成 vote、worker 和 result 的配置。
 
-## 产品交付-加入运行环境
+## 加入运行环境
 
 Duration: 0:01:00
 
-- 点击向导的“下一步”。这时，Zadig 会根据你的配置，创建两套环境（dev，qa），以及相关工作流。
+- 点击向导的「下一步」。这时，Zadig 会根据你的配置，创建两套环境（dev，qa），以及相关工作流。
 
 ![onboarding-6](./img/voting_onboarding_6.png)
 
@@ -160,15 +160,15 @@ Duration: 0:01:00
 
 ![onboarding-7](./img/voting_onboarding_7.png)
 
-## 产品交付-工作流交付
+## 工作流交付
 
 Duration: 0:01:00
 
-- 点击“运行”，可以运行工作流。
+- 点击「运行」，可以运行工作流。
 
 ![workflow-1](./img/voting_workflow_1.png)
 
-- 选择需要更新的服务，比如 vote 和 result，点击“启动任务”运行工作流。
+- 选择需要更新的服务，比如 vote 和 result，点击「启动」运行工作流。
 
 ![workflow-2](./img/voting_workflow_2.png)
 

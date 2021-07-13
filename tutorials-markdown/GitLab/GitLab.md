@@ -18,8 +18,9 @@ Duration: 0:01:00
 Duration: 0:02:00
 
 [项目案例源码](https://github.com/koderover/Zadig/tree/master/examples/micorservice-demo) 供您直接使用，该代码仓库主要包含：
+
   - 服务 Yaml 文件： [`https://github.com/koderover/Zadig/tree/main/examples/microservice-demo/k8s-yaml`](https://github.com/koderover/Zadig/tree/main/examples/microservice-demo/k8s-yaml)
-  -服务 Dockerfile 文件：
+  - 服务 Dockerfile 文件：
     - Frontend Dockerfile：[`https://github.com/lilianzhu/Zadig/blob/main/examples/microservice-demo/frontend/Dockerfile`](https://github.com/lilianzhu/Zadig/blob/main/examples/microservice-demo/frontend/Dockerfile)
     - Backend Dockerfile：[`https://github.com/lilianzhu/Zadig/blob/main/examples/microservice-demo/backend/Dockerfile`](https://github.com/lilianzhu/Zadig/blob/main/examples/microservice-demo/backend/Dockerfile)
 
@@ -146,7 +147,7 @@ docker push $IMAGE
 
 Duration: 0:01:00
 
-点击向导的“下一步”。这时，Zadig 会根据你的配置，创建2 套环境（dev，qa），以及相关工作流。
+点击向导的「下一步」。这时，Zadig 会根据你的配置，创建2 套环境（dev，qa），以及相关工作流。
 
 ![add-to-env](./img/add-to-env.png)
 
@@ -156,7 +157,7 @@ Duration: 0:01:00
 ![onboarding-finished](./img/onboarding-finished.png)
 
 
-## 产品交付-工作流交付
+## 工作流交付
 
 Duration: 0:01:00
 
@@ -164,7 +165,7 @@ Duration: 0:01:00
 
 ![run-workflow](./img/run-workflow.png)
 
-选择需要更新的服务 `backend` 和 `frontend`，点击「启动任务」运行工作流：
+选择需要更新的服务 `backend` 和 `frontend`，点击「「启动」」运行工作流：
 
 ![workflow-detail](./img/workflow-detail.png)
 
