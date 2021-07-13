@@ -11,7 +11,7 @@ feedback link: https://github.com/koderover/zadig-bootcamp/issues
 
 Duration: 0:01:00
 
-本文介绍如何在 Zadig 上快速搭建 Spring Boot 项目。Spring Boot 是构建 Java 后端应用程序的一种非常流行的框架，本文案例项目主要包含 maven 构建的 worker 、DB(postgres) 以及 Redis 这三个服务，以下步骤包含从 Code 到 Ship 的整个过程的演示
+本文介绍如何在 Zadig 上快速搭建 Spring Boot 项目。Spring Boot 是构建 Java 后端应用程序的一种非常流行的框架，本文案例项目主要包含 Maven 构建的 Worker 、DB(Postgres) 以及 Redis 这三个服务，以下步骤包含从 Code 到 Ship 的整个过程的演示
 
 ## 准备工作
 
@@ -21,7 +21,7 @@ Duration: 0:02:00
 - 服务 Yaml 文件：[`https://github.com/koderover/Zadig/tree/master/examples/voting-app/freestyle-k8s-specifications/worker`](https://github.com/koderover/Zadig/tree/master/examples/voting-app/freestyle-k8s-specifications/worker)
 - 服务 Dockerfile 文件：[`https://github.com/koderover/Zadig/blob/master/examples/voting-app/worker/Dockerfile.j`](https://github.com/koderover/Zadig/blob/master/examples/voting-app/worker/Dockerfile.j)
 
-## 产品交付-项目配置
+## 项目配置
 
 Duration: 0:02:00
 
@@ -32,7 +32,7 @@ Duration: 0:02:00
 - 接下来会看到创建成功的提示：
 
 ![创建项目](./img/springboot_succeeded_to_create_project.png "创建项目成功提示")
-## 产品交付-创建服务
+## 创建服务
 
 Duration: 0:02:00
 
@@ -43,7 +43,7 @@ Duration: 0:02:00
 Positive
 : 创建服务有两种方式，第一种是选择平台编辑直接把 Yaml 内容粘到系统中，第二种是选择从仓库导入 Yaml 文件，示例中采用第二种。
 
-- 点击仓库托管，在弹出的窗口中选择代码仓库和 worker 服务 Yaml 所在文件目录，点击加载。
+- 点击仓库托管，在弹出的窗口中选择代码仓库和 Worker 服务 Yaml 所在文件目录，点击加载。
 - 系统会自动检测 Yaml 格式是否合法，右侧会自动解析出来系统变量、自定义变量和服务组件，这里也可以继续添加自定义变量。具体过程如下图所示：
 
 ![创建服务](./img/springboot_load_service_yaml.gif "加载服务配置")
@@ -61,7 +61,7 @@ docker push $IMAGE
 ```
 添加完成后，点击`保存构建`。
 
-- 点击仓库托管，继续添加 DB  (postgres) 和 Redis 服务，如下图所示。
+- 点击仓库托管，继续添加 DB (Postgres) 和 Redis 服务，如下图所示。
 
 ![添加db和redis](./img/springboot_add_db.png "添加db和redis")
 
@@ -70,7 +70,7 @@ Positive
 
 - 添加成功后，点击下一步，完成服务配置。
 
-## 产品交付-加入运行环境
+## 加入运行环境
 
 Duration: 0:01:00
 
@@ -78,7 +78,7 @@ Duration: 0:01:00
 
 ![创建环境](./img/springboot_create_project_result.png "创建环境")
 
-## 产品交付-工作流交付
+## 工作流交付
 
 Duration: 0:01:00
 
@@ -102,7 +102,7 @@ Positive
 
 ![创建系统 Webhook](./img/springboot_create_webhook.png "创建系统Webhook")
 
-- 在 GitHub 中提交 PR，本文以更新 dev 测试环境为例，在 check run 中会展示具体的系统工作流的状态，具体如下图所示：
+- 在 GitHub 中提交 PR，本文以更新 Dev 测试环境为例，在 Check runs 中会展示具体的系统工作流的状态，具体如下图所示：
 
 ![创建 PR](./img/springboot_create_pr.png "创建 PR")
 

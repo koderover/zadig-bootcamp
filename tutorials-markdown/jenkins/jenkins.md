@@ -15,7 +15,7 @@ Duration: 0:01:00
 
 ![jenkins](./img/jenkins.png)
 
-下面使用 Voting-app 作为演示项目，该项目包括 result、vote、worker、db 和 redis 这 5 个服务，实现了一个简单的投票系统。
+下面使用 Voting-app 作为演示项目，该项目包括 Result、Vote、Worker、DB 和 Redis 这 5 个服务，实现了一个简单的投票系统。
 
 ## 准备工作
 
@@ -76,7 +76,7 @@ Duration: 0:03:00
 
 ![add-jenkins-build-3](./img/add_jenkins_build_3.png)
 
-至此，我们已经成功添加了 result 服务的 Jenkins Pipeline，vote 的 Jenkins Pipeline 配置类似，此处不再赘述。
+至此，我们已经成功添加了 Result 服务的 Jenkins Pipeline，vote 的 Jenkins Pipeline 配置类似，此处不再赘述。
 添加成功后，点击下一步，完成服务配置。
 
 ## 加入运行环境
@@ -130,7 +130,7 @@ Duration: 0:03:00
 ![add-test](./img/add_test_4.png)
 
 
-- 完成关联后，就可以使用 dev 工作流更新环境，并且对环境进行自动化测试，快速得到测试结果反馈。
+- 完成关联后，就可以使用 Dev 工作流更新环境，并且对环境进行自动化测试，快速得到测试结果反馈。
 
 ![task-result](./img/get_task_result.png)
 
