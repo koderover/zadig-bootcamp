@@ -102,7 +102,7 @@ Positive
 
 这里，我们使用代码仓导入的方式。 文件目录中准备好了这些 Yaml 。现在要做的就是把 backend 和 frontend K8s Yaml 依次导入。
 
-加载服务配置：点击`仓库托管` 按钮 -> 选择仓库信息 -> 选择文件目录。导入成功后，设置自定义变量 `demo_domain` 值，引用 系统内置变量`$EnvName`，来区分不同的环境域名。
+加载服务配置：点击`仓库托管` 按钮 -> 选择仓库信息 -> 选择文件目录。导入成功后，设置自定义变量 `demo_domain` 值，引用 系统内置变量`$EnvName$`，来区分不同的环境域名。
 
 ![add-service](./img/add-service.gif)
 
@@ -147,7 +147,7 @@ docker push $IMAGE
 
 Duration: 0:01:00
 
-点击向导的「下一步」。这时，Zadig 会根据你的配置，创建2 套环境（dev，qa），以及相关工作流。
+点击向导的「下一步」。这时，Zadig 会根据你的配置，创建 2 套环境（dev，qa），以及相关工作流。
 
 ![add-to-env](./img/add-to-env.png)
 
@@ -165,7 +165,7 @@ Duration: 0:01:00
 
 ![run-workflow](./img/run-workflow.png)
 
-选择需要更新的服务 `backend` 和 `frontend`，点击「「启动」」运行工作流：
+选择需要更新的服务 `backend` 和 `frontend`，点击「启动」运行工作流：
 
 ![workflow-detail](./img/workflow-detail.png)
 
