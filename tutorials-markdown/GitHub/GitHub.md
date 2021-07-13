@@ -17,9 +17,9 @@ Duration: 0:01:00
 
 Duration: 0:02:00
 
-- 我们提供了[项目案例源码](https://github.com/koderover/Zadig/tree/master/examples/voting-app) 供您直接使用，该代码仓库主要包含
-  * 服务 Yaml 文件： [`https://github.com/koderover/Zadig/tree/master/examples/voting-app/freestyle-k8s-specifications`](https://github.com/koderover/Zadig/tree/master/examples/voting-app/freestyle-k8s-specifications)
-  * 服务 Dockerfile 文件：业务服务目录内有一个对应的 Dockerfile 文件。
+我们提供了[项目案例源码](https://github.com/koderover/Zadig/tree/master/examples/voting-app) 供您直接使用，该代码仓库主要包含：
+- 服务 Yaml 文件： [`https://github.com/koderover/Zadig/tree/master/examples/voting-app/freestyle-k8s-specifications`](https://github.com/koderover/Zadig/tree/master/examples/voting-app/freestyle-k8s-specifications)
+- 服务 Dockerfile 文件：业务服务目录内有一个对应的 Dockerfile 文件。
 
 ## 接入 GitHub 代码源
 
