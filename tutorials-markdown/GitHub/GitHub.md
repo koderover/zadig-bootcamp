@@ -138,7 +138,7 @@ Positive
 
 ![onboarding-5](./img/voting_onboarding_5.gif)
 
-构建脚本，填写以下代码，这个服务的构建步骤是使用 docker 构建镜像，注意根据不同的服务修改脚本中的 `&lt;service-directory&gt;`参数。
+构建脚本，填写以下代码，这个服务的构建步骤是使用 Docker 构建镜像，注意根据不同的服务修改脚本中的 `&lt;service-directory&gt;`参数。
 
 ```bash
 cd $WORKSPACE/voting-app/<service-directory>
