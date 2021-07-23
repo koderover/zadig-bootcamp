@@ -66,7 +66,9 @@ Duration: 0:03:00
 ![add-service-3](./img/add_service_3.png)
 
 - 服务添加 Jenkins 构建，voting-app 项目中 vote 和 result 之前使用 Jenkins Pipeline 进行持续交付的，现在只需在将对应服务的 Jenkins Pipeline 关联到 Zadig 上，就可以通过 Zadig 工作流触发 Jenkins Pipeline。
-> 注意：Jenkins Build Parameters 中必须存在“IMAGE”变量，作为构建镜像的名称，Jenkins 成功构建镜像后，Zadig 工作流部署阶段会使用该镜像更新服务
+
+Negative 
+: 注意：Jenkins Build Parameters 中必须存在“IMAGE”变量，作为构建镜像的名称，Jenkins 成功构建镜像后，Zadig 工作流部署阶段会使用该镜像更新服务
 
 1. 点击`添加构建`
 ![add-jenkins-build-1](./img/add_jenkins_build_1.png)
