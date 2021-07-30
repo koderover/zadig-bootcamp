@@ -48,6 +48,10 @@ feedback link: https://github.com/koderover/zadig-bootcamp/issues
 
 由于 `Zadig` 内置了 `Nocalhost` 开发参数(.nocalhost/config.yaml)，此时将自动进入 `aslan` 服务的开发模式。
 
+PS：如果弹出选择开发镜像界面，请选择 "Specify my image"，并输入：`codingcorp-docker.pkg.coding.net/nocalhost/dev-images/golang:zadig`
+
+![输入 Zadig Golang 开发镜像](./img/custom_image.png)
+
 ## 在开发容器内启动 `aslan` 服务
 
 进入开发模式后，将在 `Goland` 底部终端栏自动打开远端开发容器的 `Terminal`，在容器里执行 `go run cmd/aslan/main.go`，稍等片刻，即可启动 `aslan`。
