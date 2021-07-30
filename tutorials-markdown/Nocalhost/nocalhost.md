@@ -62,7 +62,7 @@ PS：如果弹出选择开发镜像界面，请选择 "Specify my image"，并�
 
 进入开发模式后，对本地源码的所有修改，都将实时同步到远端容器。
 
-以修改接口编辑项目接口 "/api/aslan/project/products" 为例（pkg/microservice/aslan/core/project/service/product.go），在该文件的 402 行增加代码：
+以修改编辑项目接口 "/api/aslan/project/products" 为例（pkg/microservice/aslan/core/project/service/product.go），在该文件的 402 行增加代码：
 
 ```
 return e.ErrUpdateProduct.AddErr(errors.New("code change here"))
