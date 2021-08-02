@@ -13,6 +13,8 @@ feedback link: https://github.com/koderover/zadig-bootcamp/issues
 
 ## 前置条件
 
+Duration: 0:01:00
+
 * 准备一个 Kubernetes 集群（Minkube 或公有云），v1.12.0+ 版本
 * 已在集群内安装 Zadig
 
