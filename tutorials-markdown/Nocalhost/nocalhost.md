@@ -1,6 +1,6 @@
 summary: 使用 Nocalhost 加速 Zadig 开发
 id: Nocalhost
-categories: Nocalhost
+categories: 生态伙伴
 environments: Web
 status: Published
 feedback link: https://github.com/koderover/zadig-bootcamp/issues
