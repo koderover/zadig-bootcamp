@@ -18,9 +18,13 @@ feedback link: https://github.com/koderover/zadig-bootcamp/issues
 
 ## 安装 Nocalhost 插件
 
+Duration: 0:01:00
+
 前往 [https://nocalhost.dev/eng/installation/](https://nocalhost.dev/eng/installation/)，根据指引安装 VSCode 或 Jetbrains 插件。
 
 ## 在插件内添加 Kubecofig
+
+Duration: 0:01:00
 
 以 `Goland` 为例，打开右侧菜单的 `Nocalhost` 插件，并点击 "+" 按钮，选择 "Paste as Text" 黏贴 `Kubeconfig`（建议使用具有管理员权限的 kubeconfig）
 
@@ -30,6 +34,8 @@ feedback link: https://github.com/koderover/zadig-bootcamp/issues
 
 
 ## 选择 `aslan` Deployment 进入开发模式
+
+Duration: 0:04:00
 
 如果之前已使用 `Helm` 方式安装 `Zadig`，那么展开 "Zadig" Namespace，找到 `aslan` 微服务，右键点击该微服务，选择 "Start Develop"，进入开发模式。
 
@@ -54,11 +60,15 @@ PS：如果弹出选择开发镜像界面，请选择 "Specify my image"，并�
 
 ## 在开发容器内启动 `aslan` 服务
 
+Duration: 0:05:00
+
 进入开发模式后，将在 `Goland` 底部终端栏自动打开远端开发容器的 `Terminal`，在容器里执行 `go run cmd/aslan/main.go`，稍等片刻，即可启动 `aslan`。
 
 ![在开发容器内启动 aslan 服务](./img/run_aslan.png)
 
 ## 开发
+
+Duration: 0:02:00
 
 进入开发模式后，对本地源码的所有修改，都将实时同步到远端容器。
 
