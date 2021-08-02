@@ -24,7 +24,7 @@ Duration: 0:01:00
 
 前往 [https://nocalhost.dev/eng/installation/](https://nocalhost.dev/eng/installation/)，根据指引安装 VSCode 或 Jetbrains 插件。
 
-## 在插件内添加 Kubecofig
+## 在插件内添加 Kubeconfig
 
 Duration: 0:01:00
 
@@ -42,7 +42,11 @@ Duration: 0:01:00
 
 Duration: 0:01:00
 
-确保之前已使用 `Helm` 方式安装 `Zadig`，在 Nocalhost 插件中展开 "Zadig" Namespace，找到 `aslan` 微服务，右键点击该微服务，选择 "Config" 配置服务开发参数，并将以下开发参数黏贴到编辑窗口中，**并保存（Mac: Command+s, Windows: Ctrl+s）。**
+确保之前已使用 `Helm` 方式安装 `Zadig`，在 Nocalhost 插件中展开 "Zadig" Namespace，找到 `aslan` 微服务，右键点击该微服务，选择 "Config" 配置服务开发参数。
+
+![编辑 aslan 开发参数](./img/edit_nocalhost_config.png)
+
+并将以下开发参数黏贴到编辑窗口中，**并保存（Mac: Command+s, Windows: Ctrl+s）。**
 
 ```
 name: aslan
@@ -71,8 +75,6 @@ containers:
             remoteDebugPort: 2345
 
 ```
-
-![编辑 aslan 开发参数](./img/edit_nocalhost_config.png)
 
 
 ## 添加 Goland `Nocalhost Go` 配置
@@ -161,6 +163,6 @@ Duration: 0:01:00
 
 当看到 `App Aslan Started at` 输出，说明 `aslan` 服务已启动。
 
-此时进入 Web 控制台“编辑项目”页面，点击保存后 `Goland` 将得到断点信息。
+此时再次进入 Web 控制台“编辑项目”页面，点击保存请求接口后， `Goland` 将得到断点信息。
 
 ![获得断点](./img/break_point_info.png)
