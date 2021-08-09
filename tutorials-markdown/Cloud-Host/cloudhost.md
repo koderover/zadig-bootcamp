@@ -22,8 +22,7 @@ Duration: 0:05:00
   - 访问的 nginx 配置：[https://github.com/koderover/zadig/blob/main/examples/microservice-demo/frontend/vm/nginx.conf](https://github.com/koderover/zadig/blob/main/examples/microservice-demo/frontend/vm/nginx.conf)，（需确保云主机上安装 nginx，将此文件放在 nginx 配置目录下并使其生效)
 - 准备一台云主机，请确保 zadig 系统正常访问。
 
-Positive 
-: 说明：
+说明：
 1. 请先 fork 以上代码库，然后将在 Zadig 上集成个人代码仓库，详见[文档](https://docs.koderover.com/zadig/settings/codehost/github/)
 2. 本教程使用的云主机与 Zadig 系统在同一内网环境，采用云主机的内网地址：ubuntu@172.16.0.23，请根据您的实际主机地址修改。
 
@@ -80,7 +79,6 @@ Duration: 0:10:00
 
 ![添加服务](./img/add_build.png "添加服务")
 
-Positive
 说明：
   1. 添加构建所需的应用，选择 `go 1.11.5`。
   2. 选择自己账号下的 Zadig 代码仓库。
@@ -118,7 +116,6 @@ ssh -i $dev_PK $dev_USERNAME@$dev_IP 'cd /cfs/microservice/backend && ./restart.
 
 ![部署配置](./img/status.png "部署配置")
 
-Positive
 说明：
 1. 协议：backend 服务 使用 HTTP 访问，此处选择 HTTP
 2. 路径：backend 服务默认路径为健康检查路径
@@ -138,7 +135,6 @@ Positive
 
 ![服务构建](./img/frontend_build_config.png "服务构建")
 
-Positive
 说明：
   1. 添加构建所需的应用，选择 `node 8.15.0` 和 `yarn 1.3.2`。
   2. 选择自己账号下的 Zadig 代码仓库。
@@ -159,7 +155,6 @@ tar cvf $PKG_FILE dist
 
 配置部署脚本，并点击保存
 
-Positive
 说明：
   1. 选择 `SSH Agent 远程部署`。
   2. 选择部署脚本执行的主机。
@@ -208,13 +203,13 @@ Duration: 0:01:00
 
 Duration: 0:01:00
 
-更新前访问云主机服务，如下图所示：
+更新前访问云主机服务，如下图所示。
 
 ![更新前](./img/before_updated.png "更新前")
 
 执行 vm-workflow-dev 工作流对环境进行更新。
 
-再次访问云主机服务，前后端构建时间已更新，服务更新成功过：
+再次访问云主机服务，前后端构建时间已更新，服务已成功更新。
 
 ![更新后](./img/after_updated.png "更新后")
 
