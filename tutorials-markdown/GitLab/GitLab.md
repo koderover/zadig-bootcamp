@@ -118,7 +118,7 @@ Positive
 2. 代码信息，选择 `microservice-demo` 所在的代码仓库
 3. 构建脚本如下：
 
-```
+```bash
 cd microservice-demo/backend
 make build-backend
 docker build -t $IMAGE -f Dockerfile .
@@ -135,7 +135,8 @@ docker push $IMAGE
 构建配置说明：
 1. 代码信息，选择 `microservice-demo` 所在的代码仓库
 2. 构建脚本如下：
-```
+
+```bash
 cd microservice-demo/frontend
 docker build -t $IMAGE -f Dockerfile .
 docker push $IMAGE
