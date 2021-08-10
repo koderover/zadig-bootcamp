@@ -36,13 +36,17 @@ Duration: 0:03:00
 
 其中，私钥通过以下方式生成：
 1. 在主机上执行以下命令生成 SSH 密钥对。
+
+```bash
+ssh-keygen -t rsa -C "your_email@example.com"
 ```
-ssh-keygen -t rsa -C "your_email@example.com" 
-```
+
 2. 将生成的公钥追加到 authorized_keys 文件下。
-```
+
+```bash
 cat id_rsa.pub >>  authorized_keys
 ```
+
 3. 将生成的私钥 id_rsa 填入上图`私钥`字段。
 
 Positive 
@@ -84,7 +88,7 @@ Duration: 0:10:00
   2. 选择自己账号下的 Zadig 代码仓库。
   3. 填写 backend 服务的构建脚本。
 
-```
+```bash
 cp -r zadig/examples/microservice-demo/backend $WORKSPACE/backend
 cd $WORKSPACE/backend
 make build-backend
@@ -107,7 +111,8 @@ tar cvf $PKG_FILE backend
   1. 选择 `SSH Agent 远程部署`。
   2. 选择部署脚本执行的主机。
   3. 填写如下部署脚本。
-```
+
+```bash
 scp -i $dev_PK $WORKSPACE/backend/$PKG_FILE  $dev_USERNAME@$dev_IP:/cfs/microservice/backend/$PKG_FILE 
 ssh -i $dev_PK $dev_USERNAME@$dev_IP 'cd /cfs/microservice/backend && ./restart.sh '$PKG_FILE’' 
 ```
@@ -140,7 +145,7 @@ ssh -i $dev_PK $dev_USERNAME@$dev_IP 'cd /cfs/microservice/backend && ./restart.
   2. 选择自己账号下的 Zadig 代码仓库。
   3. 填写 frontend 服务的构建脚本。
 
-```
+```bash
 cd zadig/examples/microservice-demo/frontend
 make install-frontend-dep build-frontend
 tar cvf $PKG_FILE dist
@@ -160,7 +165,7 @@ tar cvf $PKG_FILE dist
   2. 选择部署脚本执行的主机。
   3. 填写如下部署脚本。
 
-```
+```bash
 scp -i $dev_PK $WORKSPACE/zadig/examples/microservice-demo/frontend/$PKG_FILE  $dev_USERNAME@$dev_IP:/cfs/microservice/frontend/$PKG_FILE
 ssh -i $dev_PK $dev_USERNAME@$dev_IP 'cd /cfs/microservice/frontend && 'rm -rf dist' && 'tar xvf $PKG_FILE' && 'rm $PKG_FILE''
 ```
