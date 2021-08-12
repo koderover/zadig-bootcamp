@@ -5,13 +5,15 @@ environments: Web
 status: Published
 feedback link: https://github.com/koderover/zadig-bootcamp/issues
 
-# 如何用 Jenkins + Zadig 分分钟搞定测试环境
+# 基于 Jenkins 构建的团队如何使用 Zadig 实现端到端的丝滑软件交付
 
 ## 概述
 
 Duration: 0:01:00
 
-本文主要介绍如何在 Zadig 上快速接入 Jenkins 工作流，实现持续交付。Jenkins 本身并非云原生设计，对于大规模微服务上云场景，Jenkins 的能力不足以支撑整个研发过程。使用 Jenkins + Zadig 进行产品交付，可以为开发提供高并发的工作流和面向服务的集成环境，方便开发日常调试，不再为缺少测试环境，抢占测试环境而困扰。
+本文主要介绍如何在 Zadig 上快速接入 Jenkins 工作流，实现端到端的微服务架构体系的持续交付。
+
+Jenkins 是一个是基于 Java 开发的、非常经典的开源持续集成项目，被企业和团队广泛应用，但 Jenkins 本身并非云原生设计，随着微服务数量增长、业务架构上云 (Kubernetes) 趋势，工程师还是需要花额外时间对接基础设施、准备环境等等，平均一个工程师要切换若干个平台才能把一段代码写上线。通过现有 Jenkins 接入 Zadig 让团队不需要理解 CI/CD 概念，可以快速获得高并发的工作流和面向服务的集成环境，方便开发日常调试，不再为缺少测试环境，抢占测试环境而困扰。
 
 ![jenkins](./img/jenkins.png)
 
@@ -67,7 +69,7 @@ Duration: 0:03:00
 
 - 服务添加 Jenkins 构建，voting-app 项目中 vote 和 result 之前使用 Jenkins Pipeline 进行持续交付的，现在只需在将对应服务的 Jenkins Pipeline 关联到 Zadig 上，就可以通过 Zadig 工作流触发 Jenkins Pipeline。
 
-Negative 
+Negative
 : 注意：Jenkins Build Parameters 中必须存在“IMAGE”变量，作为构建镜像的名称，Jenkins 成功构建镜像后，Zadig 工作流部署阶段会使用该镜像更新服务
 
 1. 点击`添加构建`
