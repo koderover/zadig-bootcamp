@@ -19,10 +19,10 @@ Duration: 0:02:00
 
 [项目案例源码](https://github.com/koderover/Zadig/tree/master/examples/micorservice-demo) 供您直接使用，该代码仓库主要包含：
 
-  - 服务 Yaml 文件： [`https://github.com/koderover/Zadig/tree/main/examples/microservice-demo/k8s-yaml`](https://github.com/koderover/Zadig/tree/main/examples/microservice-demo/k8s-yaml)
+  - 服务 YAML 文件： [`https://github.com/koderover/zadig/tree/main/examples/microservice-demo/k8s-yaml`](https://github.com/koderover/Zadig/tree/main/examples/microservice-demo/k8s-yaml)
   - 服务 Dockerfile 文件：
-    - Frontend Dockerfile：[`https://github.com/koderover/Zadig/blob/main/examples/microservice-demo/frontend/Dockerfile`](https://github.com/koderover/Zadig/blob/main/examples/microservice-demo/frontend/Dockerfile)
-    - Backend Dockerfile：[`https://github.com/koderover/Zadig/blob/main/examples/microservice-demo/backend/Dockerfile`](https://github.com/koderover/Zadig/blob/main/examples/microservice-demo/backend/Dockerfile)
+    - Frontend Dockerfile：[`https://github.com/koderover/zadig/blob/main/examples/microservice-demo/frontend/Dockerfile`](https://github.com/koderover/Zadig/blob/main/examples/microservice-demo/frontend/Dockerfile)
+    - Backend Dockerfile：[`https://github.com/koderover/zadig/blob/main/examples/microservice-demo/backend/Dockerfile`](https://github.com/koderover/Zadig/blob/main/examples/microservice-demo/backend/Dockerfile)
 
 Positive
 : 建议把源码放到自己的 GitLab 代码仓库后再进行下面的操作。
@@ -94,13 +94,13 @@ Duration: 0:01:00
 Duration: 0:05:00
 
 Zadig 提供 2 种方式管理这些模板：
-- 系统平台管理：在 Zadig 中直接输入 Yaml 。
-- 代码仓导入与同步：从某个 Git 仓中导入，之后提交到代码仓的 Yaml 变更会自动同步到 Zadig 系统上。
+- 系统平台管理：在 Zadig 中直接输入 YAML 。
+- 代码仓导入与同步：从某个 Git 仓中导入，之后提交到代码仓的 YAML 变更会自动同步到 Zadig 系统上。
 
 Positive
-: 服务 Yaml 自动同步到 Zadig 系统上的功能会在配置 [Webhook](https://docs.koderover.com/zadig/settings/webhook-config/#gitlab-webhook-%E9%85%8D%E7%BD%AE) 后生效
+: 服务 YAML 自动同步到 Zadig 系统上的功能会在配置 [Webhook](https://docs.koderover.com/zadig/settings/webhook-config/#gitlab-webhook-%E9%85%8D%E7%BD%AE) 后生效
 
-这里，我们使用代码仓导入的方式。 文件目录中准备好了这些 Yaml 。现在要做的就是把 backend 和 frontend K8s Yaml 依次导入。
+这里，我们使用代码仓导入的方式。 文件目录中准备好了这些 YAML 。现在要做的就是把 backend 和 frontend K8s YAML 依次导入。
 
 加载服务配置：点击`仓库托管` 按钮 -> 选择仓库信息 -> 选择文件目录。导入成功后，设置自定义变量 `demo_domain` 值，引用 系统内置变量`$EnvName$`，来区分不同的环境域名。
 
