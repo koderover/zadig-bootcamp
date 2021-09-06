@@ -119,7 +119,7 @@ Duration: 0:03:00
 而 redis 和 db 直接使用标准镜像，所以不需要添加构建。
 
 Negative 
-: 服务配置指的是 Yaml 对这个服务的定义。Kubernetes 可以根据这个定义产生出服务实例。可以理解为 Service as Code 。
+: 服务配置指的是 Yaml 对这个服务的定义。Kubernetes 可以根据这个定义产生出服务实例。可以理解为 Service as Code。
 
 
 Zadig 提供两种方式管理这些模板：
@@ -128,12 +128,12 @@ Zadig 提供两种方式管理这些模板：
 * 代码仓导入与同步：从某个 Git 仓中导入，之后提交到代码仓的 Yaml 变更会自动同步到 Zadig 系统上。
 
 Positive
-: 服务 Yaml 自动同步到 Zadig 系统上的功能会在配置 [Webhook](https://docs.koderover.com/zadig/settings/webhook-config/#github-webhook-%E9%85%8D%E7%BD%AE) 后生效
+: 配置 [Webhook](https://docs.koderover.com/zadig/settings/webhook-config/#github-webhook-%E9%85%8D%E7%BD%AE) 后，Zadig 系统即可自动同步指定代码仓库中的服务 Yaml 配置。
 
 
-这里，我们使用代码仓导入的方式。上面我们已经在代码仓的 [freestyle-k8s-specifications](https://github.com/koderover/Zadig/tree/master/examples/voting-app/freestyle-k8s-specifications) 文件目录中准备好了这些 Yaml 。现在要做的就是把它们导入。
+这里，我们使用代码仓导入的方式。上面我们已经在代码仓的 [freestyle-k8s-specifications](https://github.com/koderover/zadig/tree/master/examples/voting-app/freestyle-k8s-specifications) 文件目录中准备好了这些 Yaml。现在要做的就是把它们导入。
 
- - 加载服务配置：点击`仓库托管` 按钮 -> 选择仓库信息 -> 选择文件目录。Zadig 支持一次性导入多个服务，选择`freestyle-k8s-specifications` 文件目录可导入 5 个服务。
+ - 加载服务配置：点击`仓库托管`按钮 -> 选择仓库信息 -> 选择文件目录。Zadig 支持一次性导入多个服务，同步 `examples`->`voting-app`->`freestyle-k8s-specifications` 文件目录可导入此次案例中所需的 5 个服务。
  - 配置服务构建：选择服务 -> 点击`添加构建` -> 填写构建脚本。
 
 ![onboarding-5](./img/voting_onboarding_5.gif)
@@ -141,7 +141,7 @@ Positive
 构建脚本，填写以下代码，这个服务的构建步骤是使用 Docker 构建镜像，注意根据不同的服务修改脚本中的 `&lt;service-directory&gt;`参数。
 
 ```bash
-cd $WORKSPACE/voting-app/<service-directory>
+cd $WORKSPACE/zadig/examples/voting-app/<service-directory>
 docker build -t $IMAGE -f Dockerfile .
 docker push $IMAGE
 ```
