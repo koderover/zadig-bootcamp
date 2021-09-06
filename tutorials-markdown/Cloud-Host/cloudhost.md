@@ -25,31 +25,31 @@ Duration: 0:05:00
 说明：
 1. 请先 fork 以上代码库，然后在 Zadig 上集成个人代码仓库，详见[文档](https://docs.koderover.com/zadig/settings/codehost/github/)
 2. 本教程使用的云主机与 Zadig 系统在同一内网环境，用于 dev 环境和 qa 环境的云主机名称分别为 `dev`、`qa`，IP 地址分别为 `172.16.0.23`、`172.16.0.33`，请根据您的实际主机地址修改。
-3. 本项目案例的主要功能：展示前后端代码的构建时间。
+3. 本项目案例实现的主要功能：展示前后端代码的构建时间。
 
 ## 配置主机资源
 
 Duration: 0:03:00
 
-- 登录 Zadig, 进入 `系统设置` -> `主机管理` -> `主机管理`，点击`新建`。填写对应的主机信息
+- 登录 Zadig, 进入 `系统设置` -> `资源管理` -> `主机管理`，点击`新建`。填写对应的主机信息
 
 ![创建](./img/add_host.png "创建主机")
 
 其中，私钥通过以下方式生成：
 
-Step1：在主机上执行以下命令生成 SSH 密钥对。
+步骤一：在主机上执行以下命令生成 SSH 密钥对。
 
 ```bash
 ssh-keygen -t rsa -C "your_email@example.com"
 ```
 
-Step2：将生成的公钥追加到 ~/.ssh/authorized_keys 文件中。
+步骤二：将生成的公钥追加到 ~/.ssh/authorized_keys 文件中。
 
 ```bash
 cat id_rsa.pub >> ~/.ssh/authorized_keys
 ```
 
-Step3：将生成的私钥 id_rsa 填入上图`私钥`字段。
+步骤三：将生成的私钥 id_rsa 填入上图`私钥`字段。
 
 Positive 
 : 说明：根据产品交付向导完成一个项目初始化配置。
@@ -76,11 +76,11 @@ Duration: 0:01:00
 Duration: 0:10:00
 
 ### 添加 Golang 后端服务。
-Step1. 点击`创建服务`按钮，输入服务名称 backend，添加服务
+步骤一： 点击`创建服务`按钮，输入服务名称 backend，添加服务
 
 ![添加服务](./img/add_backend_service.png "添加服务")
 
-Step2. 配置 backend 服务构建信息
+步骤二： 配置 backend 服务构建信息
 
 ![添加服务](./img/backend_service_build_config.png "添加服务")
 
@@ -98,13 +98,13 @@ make build-backend
 tar cvf $PKG_FILE backend
 ```
 
-Step3. 资源配置
+步骤三： 资源配置
 
 分别为 `dev` 环境和 `qa` 环境配置主机资源。
 
 ![资源配置](./img/resource_config.png "资源配置")
 
-Step4. 配置部署过程
+步骤四： 配置部署过程
 
 ![部署配置](./img/deploy_config.png "部署配置")
 
@@ -129,12 +129,12 @@ scp -i $PK $WORKSPACE/backend/restart.sh  $USERNAME@$IP:/cfs/microservice/backen
 ssh -i $PK $USERNAME@$IP 'cd /cfs/microservice/backend && ./restart.sh '$PKG_FILE''
 ```
 
-Step5(非必须). 配置 backend 服务探活，并点击保存。
+步骤五(非必须)： 配置 backend 服务探活，并点击保存。
 
 ![部署配置](./img/status.png "部署配置")
 
 说明：
-1. 协议：backend 服务 使用 HTTP 访问，此处选择 HTTP
+1. 协议：backend 服务使用 HTTP 访问，此处选择 HTTP
 2. 路径：backend 服务默认路径为健康检查路径
 3. 端口：backend 服务启动端口为 20219
 
@@ -142,11 +142,11 @@ Step5(非必须). 配置 backend 服务探活，并点击保存。
 
 ### 添加 Vue.js 前端服务。
 
-Step1. 点击`创建服务`按钮，输入服务名称 frontend，添加服务
+步骤一：点击`创建服务`按钮，输入服务名称 frontend，添加服务
 
 ![添加服务](./img/create_frontend.png "添加服务")
 
-Step2. 配置 frontend 服务构建信息
+步骤二：配置 frontend 服务构建信息
 
 ![服务构建](./img/frontend_build_config.png "服务构建")
 
@@ -161,7 +161,7 @@ make install-frontend-dep build-frontend
 tar cvf $PKG_FILE dist
 ```
 
-Step3. 资源配置和服务部署
+步骤三：资源配置和服务部署
 
 分别为 `dev` 环境和 `qa` 环境配置主机资源，为 frontend 服务配置部署脚本，并保存。
 
@@ -230,11 +230,11 @@ Duration: 0:01:00
 
 ![更新前](./img/before_updated.png "更新前")
 
-进入 `项目` - `vm` - `工作流`，执行 vm-workflow-dev 工作流对 `dev` 环境 frontend 和 backend 服务组件进行更新。
+进入 `项目` - `vm` - `工作流`，执行 vm-workflow-dev 工作流对 `dev` 环境 frontend 和 backend 服务组件进行更新：
 
 ![更新前](./img/exec_build_pipeline.png "更新前")
 
-再次访问云主机服务，如下图所示：
+待工作流执行完毕，再次访问云主机服务，如下图所示：
 
 ![更新后](./img/after_updated.png "更新后")
 
