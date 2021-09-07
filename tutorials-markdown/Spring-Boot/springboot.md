@@ -16,10 +16,11 @@ Duration: 0:01:00
 ## 准备工作
 
 Duration: 0:02:00
+项目案例中用到的相关源代码和配置如下：
 
-- 项目案例源码：[`https://github.com/koderover/zadig/tree/main/examples/voting-app/worker`](https://github.com/koderover/Zadig/tree/main/examples/voting-app/worker)（也可配置自己的私有仓库，然后[集成代码源](https://docs.koderover.com/zadig/settings/codehost/github/)）
-- 服务 Yaml 文件：[`https://github.com/koderover/zadig/tree/main/examples/voting-app/freestyle-k8s-specifications/worker`](https://github.com/koderover/Zadig/tree/main/examples/voting-app/freestyle-k8s-specifications/worker)
-- 服务 Dockerfile 文件：[`https://github.com/koderover/zadig/blob/main/examples/voting-app/worker/Dockerfile.j`](https://github.com/koderover/Zadig/blob/main/examples/voting-app/worker/Dockerfile.j)
+- worker 服务源代码：[`worker`](https://github.com/koderover/zadig/tree/main/examples/voting-app/worker/src/main/java/worker/Worker.java)（也可配置自己的私有仓库，然后[集成代码源](https://docs.koderover.com/zadig/settings/codehost/github/)）
+- worker 服务 YAML 文件：[`YAML`](https://github.com/koderover/zadig/tree/main/examples/voting-app/freestyle-k8s-specifications/worker)
+- worker 服务 Dockerfile 文件：[`Dockerfile`](https://github.com/koderover/zadig/tree/main/examples/voting-app/worker/Dockerfile.j)
 
 ## 项目配置
 
@@ -41,9 +42,9 @@ Duration: 0:02:00
 ![创建服务](./img/springboot_createService.png "创建服务")
 
 Positive
-: 创建服务有两种方式，第一种是选择平台编辑直接把 Yaml 内容粘到系统中，第二种是选择从仓库导入 Yaml 文件，示例中采用第二种。
-- 点击仓库托管，在弹出的窗口中选择代码仓库，同步 `examples`->`voting-app`->`freestyle-k8s-specifications`->`worker` 文件目录，加载 `worker` 服务 Yaml 配置文件。
-- 系统会自动检测 Yaml 格式是否合法，右侧会自动解析出来系统变量、自定义变量和服务组件，这里也可以继续添加自定义变量。具体过程如下图所示：
+: 创建服务有两种方式，第一种是选择平台编辑直接把 YAML 内容粘到系统中，第二种是选择从仓库导入 YAML 文件，示例中采用第二种。
+- 点击仓库托管，在弹出的窗口中选择代码仓库，同步 `examples`->`voting-app`->`freestyle-k8s-specifications`->`worker` 文件目录，加载 `worker` 服务 YAML 配置文件。
+- 系统会自动检测 YAML 格式是否合法，右侧会自动解析出来系统变量、自定义变量和服务组件，这里也可以继续添加自定义变量。具体过程如下图所示：
 
 ![创建服务](./img/springboot_load_service_yaml.gif "加载服务配置")
 
@@ -95,7 +96,7 @@ Duration: 0:01:00
 
 Duration: 0:04:00
 
-- 创建基于 Github 事件的触发器，修改 `voting-app-workflow-dev` 工作流，为 `dev` 环境设置 Github 事件触发器，系统目前支持 push 和 pull_request 两种事件，具体如下图所示：
+- 创建基于 GitHub 事件的触发器，修改 `voting-app-workflow-dev` 工作流，为 `dev` 环境设置 GitHub 事件触发器，系统目前支持 push 和 pull_request 两种事件，具体如下图所示：
 
 Positive
 : 前提条件：需要配置 GitHub Webhook，全局 Webhook 请参考 [GitHub Webhook](https://docs.koderover.com/zadig/settings/webhook-config/#gitlab-webhook-%E9%85%8D%E7%BD%AE)
