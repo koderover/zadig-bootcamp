@@ -17,9 +17,9 @@ Duration: 0:01:00
 
 Duration: 0:02:00
 
-我们提供了[项目案例源码](https://github.com/koderover/zadig/tree/master/examples/voting-app) 供您直接使用，该代码仓库主要包含：
-- 服务 YAML 文件： [`https://github.com/koderover/zadig/tree/master/examples/voting-app/freestyle-k8s-specifications`](https://github.com/koderover/zadig/tree/master/examples/voting-app/freestyle-k8s-specifications)
-- 服务 Dockerfile 文件：业务服务目录内有一个对应的 Dockerfile 文件。
+本案例所用代码及配置 fork 自 [项目案例源码](https://github.com/koderover/zadig/tree/main/examples/voting-app)，主要包含：
+- 案例中 5 个服务的 Kubernetes YAML 配置：[`YAML`](https://github.com/koderover/zadig/tree/main/examples/voting-app/freestyle-k8s-specifications)
+- 案例中 3 个业务服务的 Dockerfile 文件：[`result`](https://github.com/koderover/zadig/tree/main/examples/voting-app/result)、[`vote`](https://github.com/koderover/zadig/tree/main/examples/voting-app/vote)、[`worker`](https://github.com/koderover/zadig/tree/main/examples/voting-app/worker)
 
 ## 接入 GitHub 代码源
 
@@ -211,17 +211,14 @@ Positive
 
 Duration: 0:02:00
 
-我们下面对 vote 服务中 Dog 一栏的颜色做改动。
-
-- 改动代码：
+提交 GitHub PR 修改源代码，交换 vote 服务中 `CATS` 和 `DOGS` 的背景颜色。
 
 ![trigger-5](./img/voting_trigger_5.png)
 
-- 查看工作流运行情况
+- 进入 `项目`->`voting`->`工作流`->`voting-workflow-dev` 查看工作流，可以看到 PR 变更已自动触发工作流执行：
 
 ![trigger-6](./img/voting_trigger_6.png)
-![trigger-7](./img/voting_trigger_7.png)
 
-- 查看网站运行结果：
+- 待 `voting-workflow-dev` 工作流执行完毕，进入 `项目`->`voting`->`集成环境`，点击 `dev` 环境中 `vote` 服务的服务入口，查看网站结果，可以看见 `CATS` 和 `DOGS` 背景栏颜色已被更改。
 
-![trigger-8](./img/voting_trigger_8.png)
+![trigger-8](./img/voting_trigger_7.png)
