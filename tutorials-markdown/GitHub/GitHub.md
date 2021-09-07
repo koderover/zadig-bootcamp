@@ -75,7 +75,7 @@ Duration: 0:05:00
 - `代码源`：此处选择 GitHub
 - `Client ID`：应用的 Client ID
 - `Client Secret`：应用生成的 Client Secret
-- `Organization`：GitHub 要授权的 Organization 名称或者个人 GitHubID
+- `Organization`：GitHub 要授权的 Organization 名称或者个人 GitHub Username
 
 信息确认无误后点击 `前往授权`，耐心等待，此时会系统会跳转到 GitHub 进行授权。
 
