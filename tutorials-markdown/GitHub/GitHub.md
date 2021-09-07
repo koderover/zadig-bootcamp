@@ -125,11 +125,7 @@ Negative
 Zadig 提供两种方式管理这些模板：
 
 * 系统平台管理：在 Zadig 中直接输入 Yaml 。
-* 代码仓导入与同步：从某个 Git 仓中导入，之后提交到代码仓的 Yaml 变更会自动同步到 Zadig 系统上。
-
-Positive
-: 配置 [Webhook](https://docs.koderover.com/zadig/settings/webhook-config/#github-webhook-%E9%85%8D%E7%BD%AE) 后，Zadig 系统即可自动同步指定代码仓库中的服务 Yaml 配置。
-
+* 代码仓导入与同步：从某个 Github 仓库中导入，之后提交到该代码仓的 Yaml 变更会被自动同步到 Zadig 系统上。
 
 这里，我们使用代码仓导入的方式。上面我们已经在代码仓的 [freestyle-k8s-specifications](https://github.com/koderover/zadig/tree/master/examples/voting-app/freestyle-k8s-specifications) 文件目录中准备好了这些 Yaml。现在要做的就是把它们导入。
 
@@ -146,7 +142,7 @@ docker build -t $IMAGE -f Dockerfile .
 docker push $IMAGE
 ```
 
-重复以上配置服务构建过程，完成 vote、worker 和 result 的配置。
+重复以上配置服务构建过程，完成 vote、worker 和 result 的构建配置。
 
 ## 加入运行环境
 
@@ -180,7 +176,7 @@ Duration: 0:01:00
 
 ![workflow-4](./img/voting_workflow_4.png)
 
-- 进入集成环境，查看服务列表并点击 result 和 vote 暴露出来的 URL 可以查看网站。
+- 进入集成环境，查看服务列表并点击 `result` 和 `vote` 暴露出来的 URL 可以查看网站。
 
 ![workflow-5](./img/voting_workflow_5.png)
 ![workflow-6](./img/voting_workflow_6.png)
@@ -193,7 +189,7 @@ Duration: 0:02:00
 Positive
 : 前提条件：配置 GitHub 的 Webhook，Webhook 配置请参考 [GitHub Webhook](https://docs.koderover.com/zadig/settings/webhook-config/#github-webhook-%E9%85%8D%E7%BD%AE)
 
-添加触发器，使得代码 push 或者 Pull Request 都触发 result，vote，worker 三个服务的重新构建和部署：
+添加触发器，使得代码 Push 或者 Pull Request 都触发 result，vote，worker 三个服务的重新构建和部署：
 
 - 进入工作流配置页面
 
