@@ -24,7 +24,7 @@ Jenkins 是一个是基于 Java 开发的、非常经典的开源持续集成项
 Duration: 0:02:00
 
 1. 服务的 Jenkins Pipeline
-2. 服务的 Kubernetes Yaml 文件：[https://github.com/koderover/zadig/tree/main/examples/voting-app/freestyle-k8s-specifications](https://github.com/koderover/zadig/tree/main/examples/voting-app/freestyle-k8s-specifications)
+2. 服务的 Kubernetes YAML 文件：[https://github.com/koderover/zadig/tree/main/examples/voting-app/freestyle-k8s-specifications](https://github.com/koderover/zadig/tree/main/examples/voting-app/freestyle-k8s-specifications)
 
 
 ## 集成 Jenkins
@@ -45,7 +45,7 @@ Duration: 0:02:00
 
 Duration: 0:02:00
 
-- 创建项目，voting-app 是用 Kubernetes Yaml 部署的项目，具体内容如下图所示。
+- 创建项目，voting-app 是用 Kubernetes YAML 部署的项目，具体内容如下图所示。
 
 ![create-project](./img/create_project.png)
 
@@ -57,13 +57,13 @@ Duration: 0:02:00
 
 Duration: 0:03:00
 
-- 创建服务，选择从 Github 仓库导入服务的 Kubernetes Yaml。点击 `仓库托管`，在弹框中选择代码仓库和服务 Yaml 所在的文件目录，点击加载。
+- 创建服务，选择从 GitHub 仓库导入服务的 Kubernetes YAML。点击 `仓库托管`，在弹框中选择代码仓库和服务 YAML 所在的文件目录，点击加载。
 
 ![add-service-1](./img/add_service_1.png)
 
 ![add-service-2](./img/add_service_2.png)
 
-  系统会自动检测 Yaml 格式是否合法，导入成功后，右侧会自动解析出 Yaml 文件包含的系统变量、自定义变量和服务组件，如下图所示。
+  系统会自动检测 YAML 格式是否合法，导入成功后，右侧会自动解析出 YAML 文件包含的系统变量、自定义变量和服务组件，如下图所示。
 
 ![add-service-3](./img/add_service_3.png)
 

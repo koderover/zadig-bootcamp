@@ -18,7 +18,7 @@ Duration: 0:01:00
 Duration: 0:02:00
 
 我们提供了[项目案例源码](https://github.com/koderover/Zadig/tree/master/examples/voting-app) 供您直接使用，该代码仓库主要包含：
-- 服务 Yaml 文件： [`https://github.com/koderover/Zadig/tree/master/examples/voting-app/freestyle-k8s-specifications`](https://github.com/koderover/Zadig/tree/master/examples/voting-app/freestyle-k8s-specifications)
+- 服务 YAML 文件： [`https://github.com/koderover/Zadig/tree/master/examples/voting-app/freestyle-k8s-specifications`](https://github.com/koderover/Zadig/tree/master/examples/voting-app/freestyle-k8s-specifications)
 - 服务 Dockerfile 文件：业务服务目录内有一个对应的 Dockerfile 文件。
 
 ## 接入 GitHub 代码源
@@ -119,15 +119,15 @@ Duration: 0:03:00
 而 redis 和 db 直接使用标准镜像，所以不需要添加构建。
 
 Negative 
-: 服务配置指的是 Yaml 对这个服务的定义。Kubernetes 可以根据这个定义产生出服务实例。可以理解为 Service as Code。
+: 服务配置指的是 YAML 对这个服务的定义。Kubernetes 可以根据这个定义产生出服务实例。可以理解为 Service as Code。
 
 
 Zadig 提供两种方式管理这些模板：
 
-* 系统平台管理：在 Zadig 中直接输入 Yaml 。
-* 代码仓导入与同步：从某个 Github 仓库中导入，之后提交到该代码仓的 Yaml 变更会被自动同步到 Zadig 系统上。
+* 系统平台管理：在 Zadig 中直接输入 YAML 。
+* 代码仓导入与同步：从某个 GitHub 仓库中导入，之后提交到该代码仓的 YAML 变更会被自动同步到 Zadig 系统上。
 
-这里，我们使用代码仓导入的方式。上面我们已经在代码仓的 [freestyle-k8s-specifications](https://github.com/koderover/zadig/tree/master/examples/voting-app/freestyle-k8s-specifications) 文件目录中准备好了这些 Yaml。现在要做的就是把它们导入。
+这里，我们使用代码仓导入的方式。上面我们已经在代码仓的 [freestyle-k8s-specifications](https://github.com/koderover/zadig/tree/master/examples/voting-app/freestyle-k8s-specifications) 文件目录中准备好了这些 YAML。现在要做的就是把它们导入。
 
  - 加载服务配置：点击`仓库托管`按钮 -> 选择仓库信息 -> 选择文件目录。Zadig 支持一次性导入多个服务，同步 `examples`->`voting-app`->`freestyle-k8s-specifications` 文件目录可导入此次案例中所需的 5 个服务。
  - 配置服务构建：选择服务 -> 点击`添加构建` -> 填写构建脚本。
