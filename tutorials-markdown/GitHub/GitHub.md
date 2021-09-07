@@ -17,8 +17,8 @@ Duration: 0:01:00
 
 Duration: 0:02:00
 
-我们提供了[项目案例源码](https://github.com/koderover/Zadig/tree/master/examples/voting-app) 供您直接使用，该代码仓库主要包含：
-- 服务 YAML 文件： [`https://github.com/koderover/Zadig/tree/master/examples/voting-app/freestyle-k8s-specifications`](https://github.com/koderover/Zadig/tree/master/examples/voting-app/freestyle-k8s-specifications)
+我们提供了[项目案例源码](https://github.com/koderover/zadig/tree/master/examples/voting-app) 供您直接使用，该代码仓库主要包含：
+- 服务 YAML 文件： [`https://github.com/koderover/zadig/tree/master/examples/voting-app/freestyle-k8s-specifications`](https://github.com/koderover/zadig/tree/master/examples/voting-app/freestyle-k8s-specifications)
 - 服务 Dockerfile 文件：业务服务目录内有一个对应的 Dockerfile 文件。
 
 ## 接入 GitHub 代码源
@@ -118,7 +118,7 @@ Duration: 0:03:00
 
 而 redis 和 db 直接使用标准镜像，所以不需要添加构建。
 
-Negative 
+Negative
 : 服务配置指的是 YAML 对这个服务的定义。Kubernetes 可以根据这个定义产生出服务实例。可以理解为 Service as Code。
 
 

@@ -17,12 +17,12 @@ Duration: 0:01:00
 
 Duration: 0:02:00
 
-[项目案例源码](https://github.com/koderover/Zadig/tree/master/examples/micorservice-demo) 供您直接使用，该代码仓库主要包含：
+[项目案例源码](https://github.com/koderover/zadig/tree/master/examples/micorservice-demo) 供您直接使用，该代码仓库主要包含：
 
-  - 服务 YAML 文件： [`https://github.com/koderover/zadig/tree/main/examples/microservice-demo/k8s-yaml`](https://github.com/koderover/Zadig/tree/main/examples/microservice-demo/k8s-yaml)
+  - 服务 YAML 文件： [`https://github.com/koderover/zadig/tree/main/examples/microservice-demo/k8s-yaml`](https://github.com/koderover/zadig/tree/main/examples/microservice-demo/k8s-yaml)
   - 服务 Dockerfile 文件：
-    - Frontend Dockerfile：[`https://github.com/koderover/zadig/blob/main/examples/microservice-demo/frontend/Dockerfile`](https://github.com/koderover/Zadig/blob/main/examples/microservice-demo/frontend/Dockerfile)
-    - Backend Dockerfile：[`https://github.com/koderover/zadig/blob/main/examples/microservice-demo/backend/Dockerfile`](https://github.com/koderover/Zadig/blob/main/examples/microservice-demo/backend/Dockerfile)
+    - Frontend Dockerfile：[`https://github.com/koderover/zadig/blob/main/examples/microservice-demo/frontend/Dockerfile`](https://github.com/koderover/zadig/blob/main/examples/microservice-demo/frontend/Dockerfile)
+    - Backend Dockerfile：[`https://github.com/koderover/zadig/blob/main/examples/microservice-demo/backend/Dockerfile`](https://github.com/koderover/zadig/blob/main/examples/microservice-demo/backend/Dockerfile)
 
 Positive
 : 建议把源码放到自己的 GitLab 代码仓库后再进行下面的操作。
