@@ -37,9 +37,7 @@ Duration: 0:02:00
 
 Duration: 0:02:00
 
-- 创建服务，如下图所示：
-
-![创建服务](./img/springboot_createService.png "创建服务")
+- 创建服务
 
 Positive
 : 创建服务有两种方式，第一种是选择平台编辑直接把 YAML 内容粘到系统中，第二种是选择从仓库导入 YAML 文件，示例中采用第二种。
