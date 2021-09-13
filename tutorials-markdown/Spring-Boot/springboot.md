@@ -1,11 +1,11 @@
-summary: 基于 Spring Boot 的微服务持续交付
+summary: 如何使用 Zadig 将 Spring Boot 项目持续交付到 Kubernetes 上
 id: springboot
 categories: Spring Boot
 environments: Web
 status: Published
 feedback link: https://github.com/koderover/zadig-bootcamp/issues
 
-# 基于 Spring Boot 的微服务持续交付
+# 如何使用 Zadig 将 Spring Boot 项目持续交付到 Kubernetes 上
 
 ## 概述
 
