@@ -51,8 +51,8 @@ Duration: 0:05:00
 
 - Application name：zadig，也可以填写可识别的任一名称。
 - Homepage URL：http://[koderover.yours.com]
-- Authorization CallBack URL： `http://[koderover.yours.com]/api/directory/codehosts/callback`
-- 点击创建
+- Authorization callback URL： `http://[koderover.yours.com]/api/directory/codehosts/callback`
+- 点击注册
 
 ### 获取 Client ID、Client Secret 信息
 
@@ -110,13 +110,11 @@ Duration: 0:03:00
 * redis
 * db
 
-其中以下三个服务我们有代码，还需要添加构建：
+并为以下三个业务服务添加构建以支持持续交付：
 
 * vote
 * worker
 * result
-
-而 redis 和 db 直接使用标准镜像，所以不需要添加构建。
 
 Negative
 : 服务配置指的是 YAML 对这个服务的定义。Kubernetes 可以根据这个定义产生出服务实例。可以理解为 Service as Code。
@@ -125,16 +123,16 @@ Negative
 Zadig 提供两种方式管理这些模板：
 
 * 系统平台管理：在 Zadig 中直接输入 YAML 。
-* 代码仓导入与同步：从某个 GitHub 仓库中导入，之后提交到该代码仓的 YAML 变更会被自动同步到 Zadig 系统上。
+* 代码仓导入与同步：从某个代码仓库中导入，之后提交到该代码仓的 YAML 变更会被自动同步到 Zadig 系统上。
 
-这里，我们使用代码仓导入的方式。上面我们已经在代码仓的 [freestyle-k8s-specifications](https://github.com/koderover/zadig/tree/master/examples/voting-app/freestyle-k8s-specifications) 文件目录中准备好了这些 YAML。现在要做的就是把它们导入。
+这里，我们使用代码仓导入的方式。案例所需 YAML 配置位于 [koderover/zadig](https://github.com/koderover/zadig) 仓库的 [freestyle-k8s-specifications](https://github.com/koderover/zadig/tree/master/examples/voting-app/freestyle-k8s-specifications) 文件目录中，现在要做的就是把它们导入。
 
  - 加载服务配置：点击`仓库托管`按钮 -> 选择仓库信息 -> 选择文件目录。Zadig 支持一次性导入多个服务，同步 `examples`->`voting-app`->`freestyle-k8s-specifications` 文件目录可导入此次案例中所需的 5 个服务。
  - 配置服务构建：选择服务 -> 点击`添加构建` -> 填写构建脚本。
 
 ![onboarding-5](./img/voting_onboarding_5.gif)
 
-构建脚本，填写以下代码，这个服务的构建步骤是使用 Docker 构建镜像，注意根据不同的服务修改脚本中的 `&lt;service-directory&gt;`参数。
+以 `vote` 服务为例，在构建脚本中填写以下代码：
 
 ```bash
 cd $WORKSPACE/zadig/examples/voting-app/<service-directory>
@@ -142,7 +140,8 @@ docker build -t $IMAGE -f Dockerfile .
 docker push $IMAGE
 ```
 
-重复以上配置服务构建过程，完成 vote、worker 和 result 的构建配置。
+重复以上配置服务构建过程，完成 `vote`、`worker` 和 `result` 的构建配置，注意根据不同的服务修改脚本中的 `&lt;service-directory&gt;`参数。
+
 
 ## 加入运行环境
 
@@ -160,11 +159,11 @@ Duration: 0:01:00
 
 Duration: 0:01:00
 
-- 点击「运行」，可以运行工作流。
+- 点击运行触发工作流启动。
 
 ![workflow-1](./img/voting_workflow_1.png)
 
-- 选择需要更新的服务，比如 vote 和 result，点击「启动」运行工作流。
+- 选择需要更新的服务，比如 `vote` 和 `result`，点击「启动任务」运行工作流。
 
 ![workflow-2](./img/voting_workflow_2.png)
 
@@ -179,7 +178,9 @@ Duration: 0:01:00
 - 进入集成环境，查看服务列表并点击 `result` 和 `vote` 暴露出来的 URL 可以查看网站。
 
 ![workflow-5](./img/voting_workflow_5.png)
+`vote` 页面：
 ![workflow-6](./img/voting_workflow_6.png)
+`result` 页面：
 ![workflow-7](./img/voting_workflow_7.png)
 
 ## 配置自动触发工作流
