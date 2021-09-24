@@ -88,15 +88,9 @@ Duration: 0:05:00
 
 Duration: 0:01:00
 
-进入 zadig 系统。
+进入 Zadig 系统，新建项目 `voting`。
 
-![onboarding-1](./img/voting_onboarding_1.png)
-
-新建项目，项目名为`voting`。
-
-![onboarding-2](./img/voting_onboarding_2.png)
-![onboarding-3](./img/voting_onboarding_3.png)
-![onboarding-4](./img/voting_onboarding_4.png)
+![onboarding-1](./img/voting_onboarding_create_project.gif)
 
 ## 创建服务与服务构建
 
@@ -186,9 +180,6 @@ Duration: 0:01:00
 ## 配置自动触发工作流
 
 Duration: 0:02:00
-
-Positive
-: 前提条件：配置 GitHub 的 Webhook，Webhook 配置请参考 [GitHub Webhook](https://docs.koderover.com/zadig/settings/webhook-config/#github-webhook-%E9%85%8D%E7%BD%AE)
 
 添加触发器，使得代码 Push 或者 Pull Request 都触发 result，vote，worker 三个服务的重新构建和部署：
 
