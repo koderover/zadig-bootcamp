@@ -13,6 +13,8 @@ Duration: 0:01:00
 
 本文介绍 GitHub 仓库管理的项目如何在 Zadig 上快速搭建，下面以 Voting 项目为例，该项目包含 Python, Redis, Postgres, Node.js, and .Net 等相对典型的微服务应用程序组合。以下步骤包含从 Code 到 Ship 的整个过程的演示。
 
+![GitHub](./img/github_zadig.png)
+
 ## 准备工作
 
 Duration: 0:02:00
@@ -20,6 +22,7 @@ Duration: 0:02:00
 本案例所用代码及配置 fork 自 [项目案例源码](https://github.com/koderover/zadig/tree/main/examples/voting-app)，主要包含：
 - 案例中 5 个服务的 Kubernetes YAML 配置：[`YAML`](https://github.com/koderover/zadig/tree/main/examples/voting-app/freestyle-k8s-specifications)
 - 案例中 3 个业务服务的 Dockerfile 文件：[`result`](https://github.com/koderover/zadig/tree/main/examples/voting-app/result)、[`vote`](https://github.com/koderover/zadig/tree/main/examples/voting-app/vote)、[`worker`](https://github.com/koderover/zadig/tree/main/examples/voting-app/worker)
+
 
 ## 接入 GitHub 代码源
 
