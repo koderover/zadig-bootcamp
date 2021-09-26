@@ -13,6 +13,8 @@ Duration: 0:01:00
 
 本文介绍 GitLab 仓库管理的项目如何在 Zadig 上快速搭建，下面以 Microservice-demo 项目为例，该项目包含 Vue.js 前端服务和 Golang 后端服务，以下步骤包含从 Code 到 Ship 的整个过程的演示。
 
+![GitLab](./img/gitlab-zadig.png)
+
 ## 准备工作
 
 Duration: 0:02:00
