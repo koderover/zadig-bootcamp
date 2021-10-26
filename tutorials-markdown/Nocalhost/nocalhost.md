@@ -22,7 +22,7 @@ Duration: 0:01:00
 
 Duration: 0:01:00
 
-前往 [https://nocalhost.dev/eng/installation/](https://nocalhost.dev/eng/installation/)，根据指引安装 VSCode 或 Jetbrains 插件。
+前往 [https://nocalhost.dev/docs/installation/](https://nocalhost.dev/docs/installation/)，根据指引安装 VSCode 或 Jetbrains 插件。
 
 ## 在插件内添加 Kubeconfig
 
