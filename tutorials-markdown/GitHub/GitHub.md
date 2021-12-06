@@ -24,6 +24,8 @@ Duration: 0:02:00
 - 案例中 3 个业务服务的 Dockerfile 文件：[`result`](https://github.com/koderover/zadig/tree/main/examples/voting-app/result)、[`vote`](https://github.com/koderover/zadig/tree/main/examples/voting-app/vote)、[`worker`](https://github.com/koderover/zadig/tree/main/examples/voting-app/worker)
 
 
+案例中有使用 Ingress，请根据自己的域名及解析情况按需修改 [`result`](https://github.com/koderover/zadig/blob/main/examples/voting-app/freestyle-k8s-specifications/result/result-service.yaml#L25) 服务和 [`vote`](https://github.com/koderover/zadig/blob/main/examples/voting-app/freestyle-k8s-specifications/vote/vote-service.yaml#L25) 服务的规则。
+
 ## 接入 GitHub 代码源
 
 Duration: 0:05:00
