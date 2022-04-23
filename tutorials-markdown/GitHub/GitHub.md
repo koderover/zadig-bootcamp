@@ -126,7 +126,7 @@ Zadig 提供三种方式管理服务配置：
 * 从代码库同步：服务的 K8s YAML 配置文件在代码库中，从代码库中同步服务配置。之后提交到该代码库的 YAML 变更会被自动同步到 Zadig 系统上。
 * 使用模板新建：在 Zadig 平台中创建服务 K8s YAML 模板，创建服务时，在模板的基础上对服务进行重新定义。
 
-这里，我们使用从代码库同步的方式。案例所需 YAML 配置位于 [koderover/zadig](https://github.com/koderover/zadig) 仓库的 [freestyle-k8s-specifications](https://github.com/koderover/zadig/tree/master/examples/voting-app/freestyle-k8s-specifications) 文件目录中，现在要做的就是把它们从代码库同步到 Zadig 中。点击`从代码库同步`按钮 -> 选择仓库信息及文件目录。Zadig 支持一次性导入多个服务，同步 `examples`->`voting-app`->`freestyle-k8s-specifications` 文件目录可同步此次案例中所需的 5 个服务。
+这里，我们使用从代码库同步的方式。点击`从代码库同步`按钮 -> 选择仓库信息 -> 选择文件目录 `examples`->`voting-app`->`freestyle-k8s-specifications` -> 点击`同步`按钮即可。
 
 ![onboarding-5](./img/import_service_from_repo.png)
 
