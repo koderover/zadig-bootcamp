@@ -17,7 +17,7 @@ Jenkins 是一个是基于 Java 开发的、非常经典的开源持续集成项
 
 ![jenkins](./img/jenkins.png)
 
-下面使用 Voting-app 作为演示项目，该项目包括 Result、Vote、Worker、DB 和 Redis 这 5 个服务，实现了一个简单的投票系统。
+下面使用 `voting` 作为演示项目，该项目包括 Result、Vote、Worker、DB 和 Redis 这 5 个服务，实现了一个简单的投票系统。
 
 ## 准备工作
 
@@ -25,7 +25,6 @@ Duration: 0:02:00
 
 1. 服务的 Jenkins Pipeline
 2. 服务的 Kubernetes YAML 文件：[https://github.com/koderover/zadig/tree/main/examples/voting-app/freestyle-k8s-specifications](https://github.com/koderover/zadig/tree/main/examples/voting-app/freestyle-k8s-specifications)
-
 
 ## 集成 Jenkins
 
@@ -37,106 +36,121 @@ Duration: 0:02:00
 
 ![jenkins-token](./img/generate_jenkins_token_2.png)
 
-- 访问 Zadig，点击 `系统设置` ->  `集成环境` -> `Jenkins 集成` ，添加 Jenkins 服务相关信息，如下图所示。
+- 访问 Zadig，点击 `系统设置` -> `系统集成` -> `Jenkins 集成` ，添加 Jenkins 服务相关信息，如下图所示。
 
 ![add-jenkins-server](./img/add_jenkins_server.png)
 
 ## 项目配置
 
-Duration: 0:02:00
+Duration: 0:01:00
 
-- 创建项目，voting-app 是用 Kubernetes YAML 部署的项目，具体内容如下图所示。
+进入 Zadig 系统，点击`新建项目` -> 填写项目名称 `voting` -> 选择 `K8s YAML 项目` -> 点击立即创建。
 
-![create-project](./img/create_project.png)
+![onboarding](./img/create_voting_project.png)
 
-- 成功创建项目，进入项目配置向导，系统预设了 2 套集成环境和 3 条工作流。
+![onboarding](./img/create_voting_project_1.png)
 
-![succeeded-create-project](./img/succeeded_to_create_project.png)
-
-## 创建服务
+## 新建服务并配置构建
 
 Duration: 0:03:00
 
-- 创建服务，选择从 GitHub 仓库导入服务的 Kubernetes YAML。点击 `仓库托管`，在弹框中选择代码仓库和服务 YAML 所在的文件目录，点击加载。
-
-![add-service-1](./img/add_service_1.png)
-
-![add-service-2](./img/add_service_2.png)
-
-  系统会自动检测 YAML 格式是否合法，导入成功后，右侧会自动解析出 YAML 文件包含的系统变量、自定义变量和服务组件，如下图所示。
-
-![add-service-3](./img/add_service_3.png)
-
-- 服务添加 Jenkins 构建，voting-app 项目中 vote 和 result 之前使用 Jenkins Pipeline 进行持续交付的，现在只需在将对应服务的 Jenkins Pipeline 关联到 Zadig 上，就可以通过 Zadig 工作流触发 Jenkins Pipeline。
+### 新建服务
 
 Negative
-: 注意：Jenkins Build Parameters 中必须存在“IMAGE”变量，作为构建镜像的名称，Jenkins 成功构建镜像后，Zadig 工作流部署阶段会使用该镜像更新服务
+: 服务配置指的是 YAML 对这个服务的定义，Kubernetes 可以根据这个定义产生出服务实例。可以理解为 Service as Code。
 
-1. 点击`添加构建`
-![add-jenkins-build-1](./img/add_jenkins_build_1.png)
-2. 选择 Jenkins 构建
-![add-jenkins-build-2](./img/add_jenkins_build_2.png)
-3. 选择对应的 Jenkins job，修改变量，并保存构建
+Zadig 提供三种方式管理服务配置：
 
-![add-jenkins-build-3](./img/add_jenkins_build_3.png)
+* 手工输入：在创建服务时手动输入服务的 K8s YAML 配置文件，内容存储在 Zadig 系统中。
+* 从代码库同步：服务的 K8s YAML 配置文件在代码库中，从代码库中同步服务配置。之后提交到该代码库的 YAML 变更会被自动同步到 Zadig 系统上。
+* 使用模板新建：在 Zadig 平台中创建服务 K8s YAML 模板，创建服务时，在模板的基础上对服务进行重新定义。
 
-至此，我们已经成功添加了 Result 服务的 Jenkins Pipeline，vote 的 Jenkins Pipeline 配置类似，此处不再赘述。
-添加成功后，点击下一步，完成服务配置。
+这里，我们使用从代码库同步的方式。点击`从代码库同步`按钮 -> 选择仓库信息 -> 选择文件目录 `examples`->`voting-app`->`freestyle-k8s-specifications` -> 点击`同步`按钮即可在 Zadig 中一次性创建本案例所需的 5 个服务。
 
-## 加入运行环境
+![onboarding](./img/import_service_from_repo.png)
+
+![onboarding](./img/import_service_from_repo_1.png)
+
+### 配置构建
+
+接下来为服务配置构建，以便于后续对服务进行持续交付，以 `vote` 服务为例：选择 `vote` 服务 -> 点击`添加构建`。
+
+![onboarding](./img/config_build_for_vote.png)
+
+参考[如何配置 Jenkins 构建](https://docs.koderover.com/zadig/v1.11.0/project/build/#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8)完成相关配置，本例中 `vote` 服务构建配置如下。
+
+![onboarding](./img/config_build_for_vote_1.png)
+
+重复以上构建配置过程，完成 5 个服务的构建配置。
+
+## 加入环境
 
 Duration: 0:01:00
 
-- 进入「加入运行环境」，系统根据以上配置，自动创建 2 套环境和 3 条工作流，具体如下图所示：
+- 点击向导的「下一步」。这时，Zadig 会根据你的配置，创建两套包括上述 5 个服务的环境以及相关工作流，如下图所示。
 
-![succeeded-create-env-workflow](./img/succeeded_to_create_env_workflow.png)
+![onboarding](./img/voting_onboarding_6.png)
+
+- 继续点击下一步完成向导流程。
+
+![onboarding](./img/voting_onboarding_7.png)
+
+- 至此，一个有 5 个微服务的项目、2 套环境、3 条工作流已经产生，可点击项目名称查看项目的整体信息。
+
+![onboarding](./img/voting_project_overview.png)
 
 ## 工作流交付
 
 Duration: 0:01:00
 
-- 点击运行 dev 工作流，来完成 dev 环境的持续交付，如下图所示。
+使用工作流对环境中的服务进行部署更新，以 `dev` 环境为例操作步骤如下。
 
-![run-task](./img/run_task_1.png)
+- 点击 `voting-workflow-dev` 工作流 -> 选择需要更新的服务（比如 `vote` 和 `result`），点击「启动任务」运行工作流。
 
-这里，我们可以选择多个服务同时更新到环境中。
+![workflow](./img/run_workflow_dev.png)
 
-![run-task](./img/run_task_2.png)
+- 触发工作流后，可查看工作流运行状况，点击服务左侧的展开图标可查看服务构建的实时日志。
 
-- 执行过程中，可以看到，选择的两个服务可以并发执行。
+![workflow](./img/voting_workflow_3.png)
 
-![run-task](./img/run_task_3.png)
+- 待工作流运行完毕，进入 `dev` 环境，可看到 `vote` 服务和 `result` 服务被部署更新成功，镜像信息均被更新。
 
-- 在 Zadig 工作流任务中查看 Jenkins 构建的日志。
+![workflow](./img/show_dev_env_info.png)
 
-![run-task](./img/run_task_4.png)
+## 自动化测试和工作流联动
 
-- 执行完成后，可在对应集成环境中查看服务的运行状态、查看实时日志，对服务进行调整服务数量、更换镜像、进入容器调试等操作。
+在 Zadig 平台中配置自动化测试，并和工作流关联起来。当执行工作流对环境进行更新后，会自动运行自动化测试为日常变更做质量保障。操作步骤如下：
 
-![run-task](./img/run_task_5.png)
+- 添加测试
 
-## 添加测试，挂接工作流
+![test](./img/add_test_1.png)
 
-Duration: 0:03:00
+- 参考[如何配置测试](https://docs.koderover.com/zadig/v1.11.0/project/test/#%E6%B5%8B%E8%AF%95%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83)填写必要的测试配置信息后点击`立即新建`保存测试
 
-- 添加自动化测试用例
+![test](./img/add_test_2.png)
 
-![add-test](./img/add_test_1.png)
+- 点击`已关联的工作流`右侧的 `+` 号 -> 选择工作流 -> 点击`确定`，将测试关联到工作流中，使之成为工作流的一个子环节
 
-- 填写测试用例必要的执行环境，测试用例所在的代码仓库等信息。
+![test](./img/add_test_3.png)
 
-![add-test](./img/add_test_2.png)
+- 运行挂接的工作流，当环境更新完成后，会自动运行测试，快速得到测试结果反馈
 
-- 保存后，可将测试用例关联到 dev 工作流。
+![test](./img/add_test_4.png)
 
-![add-test](./img/add_test_3.png)
+## 配置 IM 通知
 
-![add-test](./img/add_test_4.png)
+Duration: 0:02:00
 
+- 配置工作流
 
-- 完成关联后，就可以使用 Dev 工作流更新环境，并且对环境进行自动化测试，快速得到测试结果反馈。
+![IM](./img/voting_trigger_1.png)
 
-![task-result](./img/get_task_result.png)
+- 添加通知 -> 参考 [IM 通知](https://docs.koderover.com/zadig/v1.11.0/project/workflow/#im-%E7%8A%B6%E6%80%81%E9%80%9A%E7%9F%A5)填写相关配置 -> 保存修改
 
-通过以上步骤，我们已经完成了Jenkins + Zadig 的项目配置，可以看到，Zadig 补足了Jenkins 不具备的环境管理能力和测试管理能力，通过 Zadig 让研发过程变得更丝滑。
+![IM](./img/im_config.png)
 
+- 工作流执行后，会自动将运行结果推送到 IM 系统中，方便及时跟进
+
+![IM](./img/im_config_1.png)
+
+通过以上步骤，我们已经完成了 Jenkins + Zadig 的项目配置，可以看到，Zadig 补足了 Jenkins 不具备的环境管理能力和测试管理能力，通过 Zadig 让研发过程变得更丝滑。
