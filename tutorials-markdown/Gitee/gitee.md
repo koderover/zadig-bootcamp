@@ -28,8 +28,6 @@ Duration: 0:02:00
     - Frontend Dockerfile：[`https://gitee.com/koderover/zadig/blob/main/examples/microservice-demo/frontend/Dockerfile`](https://gitee.com/koderover/zadig/blob/main/examples/microservice-demo/frontend/Dockerfile)
     - Backend Dockerfile：[`https://gitee.com/koderover/zadig/blob/main/examples/microservice-demo/backend/Dockerfile`](https://gitee.com/koderover/zadig/blob/main/examples/microservice-demo/backend/Dockerfile)
 
-![Gitee](./img/install_go_1.16.13.png)
-
 ## 接入 Gitee 代码源
 
 ### 新建 Gitee 第三方应用
