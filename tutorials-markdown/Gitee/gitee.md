@@ -21,17 +21,12 @@ Duration: 0:02:00
 
 ### 准备案例源码
 
-[项目案例源码](https://github.com/koderover/zadig/tree/master/examples/microservice-demo) 供您直接使用，该代码仓库主要包含：
+[项目案例源码](https://gitee.com/koderover/zadig/tree/main/examples/microservice-demo) 供您直接使用，该代码仓库主要包含：
 
-  - 服务 YAML 文件： [`https://github.com/koderover/zadig/tree/main/examples/microservice-demo/k8s-yaml`](https://github.com/koderover/zadig/tree/main/examples/microservice-demo/k8s-yaml)
+  - 服务 YAML 文件： [`https://gitee.com/koderover/zadig/tree/main/examples/microservice-demo/k8s-yaml`](https://gitee.com/koderover/zadig/tree/main/examples/microservice-demo/k8s-yaml)
   - 服务 Dockerfile 文件：
-    - Frontend Dockerfile：[`https://github.com/koderover/zadig/blob/main/examples/microservice-demo/frontend/Dockerfile`](https://github.com/koderover/zadig/blob/main/examples/microservice-demo/frontend/Dockerfile)
-    - Backend Dockerfile：[`https://github.com/koderover/zadig/blob/main/examples/microservice-demo/backend/Dockerfile`](https://github.com/koderover/zadig/blob/main/examples/microservice-demo/backend/Dockerfile)
-
-在自己的 Gitee 上创建名为 `microservice-demo` 的代码仓库，并将[源码](https://github.com/koderover/zadig/tree/master/examples/microservice-demo)放到 `microservice-demo` 仓库中。
-
-Positive
-: 只需要将 microservice-demo 目录下的内容放在 microservice-demo 库中即可，无需在 GitLab 上准备整个 zadig 仓库。
+    - Frontend Dockerfile：[`https://gitee.com/koderover/zadig/blob/main/examples/microservice-demo/frontend/Dockerfile`](https://gitee.com/koderover/zadig/blob/main/examples/microservice-demo/frontend/Dockerfile)
+    - Backend Dockerfile：[`https://gitee.com/koderover/zadig/blob/main/examples/microservice-demo/backend/Dockerfile`](https://gitee.com/koderover/zadig/blob/main/examples/microservice-demo/backend/Dockerfile)
 
 ### 安装软件包
 
