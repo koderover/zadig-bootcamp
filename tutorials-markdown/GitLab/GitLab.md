@@ -11,7 +11,7 @@ feedback link: https://github.com/koderover/zadig-bootcamp/issues
 
 Duration: 0:01:00
 
-本文介绍 GitLab 仓库管理的项目如何在 Zadig 上快速搭建，下面以 Microservice-demo 项目为例，该项目包含 Vue.js 前端服务和 Golang 后端服务，以下步骤包含从 Code 到 Ship 的整个过程的演示。
+本文介绍 GitLab 仓库管理的项目如何在 Zadig 上快速搭建，下面以 microservice-demo 项目为例，该项目包含 Vue.js 前端服务和 Golang 后端服务，以下步骤包含从 Code 到 Ship 的整个过程的演示。
 
 ![GitLab](./img/gitlab-zadig.png)
 
@@ -26,8 +26,21 @@ Duration: 0:02:00
     - Frontend Dockerfile：[`https://github.com/koderover/zadig/blob/main/examples/microservice-demo/frontend/Dockerfile`](https://github.com/koderover/zadig/blob/main/examples/microservice-demo/frontend/Dockerfile)
     - Backend Dockerfile：[`https://github.com/koderover/zadig/blob/main/examples/microservice-demo/backend/Dockerfile`](https://github.com/koderover/zadig/blob/main/examples/microservice-demo/backend/Dockerfile)
 
+在自己的 GitLab 上创建名为 `microservice-demo` 的代码仓库，并将[源码](https://github.com/koderover/zadig/tree/master/examples/microservice-demo)放到 `microservice-demo` 仓库中。
+
 Positive
-: 建议把源码放到自己的 GitLab 代码仓库后再进行下面的操作。
+: 只需要将 microservice-demo 目录下的内容放在 microservice-demo 库中即可，无需在 GitLab 上准备整个 zadig 仓库。
+
+目前系统内置的 Golang 版本无法满足本例中后端服务的构建诉求，管理员可通过在`系统设置` -> `软件包管理`中添加新的 Golang 版本，以 `go 1.16.13` 为例说明如下。
+
+- `名称`：go
+- `版本`：1.16.13
+- `Bin Path`：$HOME/go/bin
+- `启用`：开启`启用该软件包`
+- `安装包地址`：https://go.dev/dl/go1.16.13.linux-amd64.tar.gz
+- `安装脚本`：tar -C $HOME -xzf ${FILEPATH}
+
+![GitLab](./img/install_go_1.16.13.png)
 
 ## 接入 GitLab 代码源
 
@@ -79,44 +92,52 @@ Positive
 
 Duration: 0:01:00
 
-进入 Zadig 系统：
+进入 Zadig 系统，点击`新建项目` -> 填写项目名称 `microservice-demo` -> 选择 `K8s YAML 项目` -> 点击`立即创建` -> 点击`下一步`。
 
-![login](./img/login.png)
+![onboarding-1](./img/create_voting_project.png)
 
-新建项目，项目名为`microservice-demo`：
+![onboarding-1](./img/create_voting_project_1.png)
 
-![create-new-project](./img/create-new-project.png)
+![onboarding-1](./img/create_voting_project_2.png)
 
-![project-detail](./img/project-detail.png)
-
-![project-onboarding](./img/project-onboarding.png)
-
-## 创建服务与服务构建
+## 新建服务并配置构建
 
 Duration: 0:05:00
 
-Zadig 提供 2 种方式管理这些模板：
-- 系统平台管理：在 Zadig 中直接输入 YAML 。
-- 代码仓导入与同步：从某个 Git 仓中导入，之后提交到代码仓的 YAML 变更会自动同步到 Zadig 系统上。
+### 新建服务
+
+Negative
+: 服务配置指的是 YAML 对这个服务的定义，Kubernetes 可以根据这个定义产生出服务实例。可以理解为 Service as Code。
+
+Zadig 提供三种方式管理服务配置：
+
+* 手工输入：在创建服务时手动输入服务的 K8s YAML 配置文件，内容存储在 Zadig 系统中。
+* 从代码库同步：服务的 K8s YAML 配置文件在代码库中，从代码库中同步服务配置。之后提交到该代码库的 YAML 变更会被自动同步到 Zadig 系统上。
+* 使用模板新建：在 Zadig 平台中创建服务 K8s YAML 模板，创建服务时，在模板的基础上对服务进行重新定义。
+
+这里，我们使用从代码库同步的方式：点击`从代码库同步`按钮 -> 选择仓库信息 -> 选择文件目录 `k8s-yaml` -> 点击`同步`按钮即可。
+
+![onboarding-2](./img/add_service_1.png)
+
+![onboarding-2](./img/add_service_2.png)
+
+加载服务配置后，设置配置中的自定义变量 `demo_domain` 值为 `micro-$EnvName$-test.co.coderover.cn`。此处使用系统内置变量 `$EnvName$` 来为域名赋值，当环境创建完毕后，不同环境中的服务将会有不同的访问地址。
 
 Positive
-: 服务 YAML 自动同步到 Zadig 系统上的功能会在配置 [Webhook](https://docs.koderover.com/zadig/settings/webhook-config/#gitlab-webhook-%E9%85%8D%E7%BD%AE) 后生效
+: 请根据自己的域名及解析情况按需填写此处 `demo_domain` 的值
 
-这里，我们使用代码仓导入的方式。 文件目录中准备好了这些 YAML 。现在要做的就是把 backend 和 frontend K8s YAML 依次导入。
+![onboarding-2](./img/config_ingress.png)
 
-加载服务配置：点击`仓库托管` 按钮 -> 选择仓库信息 -> 选择文件目录。导入成功后，设置自定义变量 `demo_domain` 值，引用 系统内置变量`$EnvName$`，来区分不同的环境域名。
+### 配置构建
 
-![add-service](./img/add-service.gif)
+配置后端服务构建：选择 `backend` 服务 -> 点击`添加构建` -> 填写构建配置和构建脚本后保存。
 
+![config_build](./img/config_backend_build.png)
 
-配置后端服务构建：选择`backend`服务 -> 点击`添加构建` -> 填写构建脚本。
-
-![add-backend-service](./img/add-backend-service.png)
-
-![add-build-config](./img/add-build-config.png)
+![config_build](./img/config_backend_build_1.png)
 
 构建配置说明：
-1. 应用列表选择 `go 1.16.4`
+1. 应用列表选择 `go 1.16.13`
 2. 代码信息，选择 `microservice-demo` 所在的代码仓库
 3. 构建脚本如下：
 
@@ -127,12 +148,9 @@ docker build -t $IMAGE -f Dockerfile .
 docker push $IMAGE
 ```
 
-4. 保存构建配置
-配置前端服务构建：选择`frontend`服务 -> 点击`添加构建` -> 填写构建脚本。
+同样的步骤为 `frontend` 服务配置构建并保存。
 
-![save-build-config](./img/save-build-config.png)
-
-![save-build-config-2](./img/save-build-config.png)
+![config_build](./img/config_frontend_build.png)
 
 构建配置说明：
 1. 代码信息，选择 `microservice-demo` 所在的代码仓库
@@ -144,97 +162,84 @@ docker build -t $IMAGE -f Dockerfile .
 docker push $IMAGE
 ```
 
-3. 保存构建配置
-
-## 加入运行环境
+## 加入环境
 
 Duration: 0:01:00
 
-点击向导的「下一步」。这时，Zadig 会根据你的配置，创建 2 套环境（dev，qa），以及相关工作流。
+- 点击向导的「下一步」。这时，Zadig 会根据你的配置，创建两套包括上述 2 个服务的环境以及相关工作流，如下图所示。
 
-![add-to-env](./img/add-to-env.png)
+![add-to-env](./img/onboarding_env_step.png)
 
-点击下一步完成向导。至此，Onboarding 完成。根据配置，已经产生 2 套环境和 3 条工作流。
+- 继续点击下一步完成向导流程。
 
-![onboarding-done](./img/onboarding-done.png)
-![onboarding-finished](./img/onboarding-finished.png)
+![add-to-env](./img/onboarding_env_step_1.png)
 
+- 点击完成向导，一个有 2 个微服务的项目、2 套环境、3 条工作流已经产生，项目概览如下。
+
+![microservice_demo_project_overview](./img/microservice_demo_project_overview.png)
 
 ## 工作流交付
 
 Duration: 0:01:00
 
-点击「运行」，可以运行工作流：
+使用工作流对环境中的服务进行部署更新，以 `dev` 环境为例操作步骤如下。
 
-![run-workflow](./img/run-workflow.png)
+- 点击 `microservice-demo-workflow-dev` 工作流 -> 选择服务，点击「启动任务」运行工作流。
 
-选择需要更新的服务 `backend` 和 `frontend`，点击「启动」运行工作流：
+![workflow-1](./img/run_workflow_dev.png)
 
-![workflow-detail](./img/workflow-detail.png)
+- 触发工作流后，可查看工作流运行状况，点击服务左侧的展开图标可查看服务构建的实时日志。
 
-查看工作流运行状况：
+![workflow-3](./img/voting_workflow_3.png)
 
-![workflow-status](./img/workflow-status.png)
+- 待工作流运行完毕，进入 `dev` 环境，可看到 `backend` 服务和 `frontend` 服务被部署更新成功，镜像信息均被更新。
 
-进入集成环境，查看服务列表，并点击服务 URL，可以查看网站。
-
-![service-list](./img/service-list.png)
-
-![website](./img/website.png)
-
+![workflow-3](./img/show_dev_env_info.png)
 
 ## 配置自动触发工作流
 
-Duration: 0:03:00
+Duration: 0:02:00
 
-Positive
-: 前提条件：配置 GitLab 的 Webhook，Webhook 配置请参考 [GitLab Webhook](https://docs.koderover.com/zadig/settings/webhook-config/#gitlab-webhook-%E9%85%8D%E7%BD%AE)
+添加触发器，使得代码 Push commit、Pull Request、Push tag 都能自动触发服务的重新构建和部署。
 
-添加触发器，使得代码 Push 或者 Pull Request 都触发 `backend` 和 `frontend` 重新构建和部署。
+- 配置工作流
 
-进入工作流配置页面：
+![trigger-1](./img/voting_trigger_1.png)
 
-![workflow-list](./img/workflow-list.png)
+- 添加 Webhook 触发器 -> 打开 Webhook 开关 -> 添加配置 -> 填写配置
 
-添加 Webhook 触发器：
+![trigger-3](./img/voting_trigger_3.png)
 
-![add-webhook](./img/add-webhook.png)
+- 保存对工作流的修改
 
-配置 Webhook 触发器
-
-1. backend 服务触发器配置：
-
-![add-backend-webhook](./img/add-backend-webhook.png)
-
-如上图所示，当 backend 文件夹中的代码变动时会触发 `backend` 服务的更新
-
-2. frontend 服务触发器配置：
-
-![add-frontend-webhook](./img/add-frontend-webhook.png)
-
-如上图所示，当 frontend 文件夹中的代码变动时会触发 `frontend` 服务的更新
-
-![frontend-webhook-detail](./img/frontend-webhook-detail.png)
-
-保存工作流：
-
-![save-webhook](./img/save-webhook.png)
+![trigger-4](./img/voting_trigger_4.png)
 
 ## 改动代码，触发工作流
 
-Duration: 0:03:00
+Duration: 0:02:00
 
-改动前端代码：
+- 提交 GitLab PR 修改源代码。在 PR 页面中会有触发工作流的信息，可点击工作流链接快速跳转到触发的工作流
 
-![edit-code](./img/edit-code.png)
-![edit-code-2](./img/edit-code-2.png)
+![trigger-6](./img/voting_trigger_6_2.png)
 
-查看工作流运行情况：
+![trigger-6](./img/voting_trigger_6.png)
 
-![run-workflow-status](./img/run-workflow-status.png)
+- 待工作流执行完毕，进入 `项目`->`voting`->`环境`，可看到服务的镜像已被自动触发的工作流更新。
 
-查看网站运行结果：
+![trigger-8](./img/voting_trigger_7.png) 
 
-![website-result](./img/website-result.png)
+## 配置 IM 通知
 
+Duration: 0:02:00
 
+- 配置工作流
+
+![IM-1](./img/voting_trigger_1.png)
+
+- 添加通知 -> 参考 [IM 通知](https://docs.koderover.com/zadig/v1.11.0/project/workflow/#im-%E7%8A%B6%E6%80%81%E9%80%9A%E7%9F%A5)填写相关配置 -> 保存修改
+
+![IM-1](./img/im_config.png)
+
+- 工作流执行后，会自动将运行结果和环境、服务等信息推送到 IM 系统中，方便及时跟进
+
+![IM-1](./img/im_config_1.png)

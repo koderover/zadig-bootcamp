@@ -21,8 +21,7 @@ Duration: 0:02:00
 
 本案例所用代码及配置 fork 自 [项目案例源码](https://github.com/koderover/zadig/tree/main/examples/voting-app)，主要包含：
 - 案例中 5 个服务的 Kubernetes YAML 配置：[`YAML`](https://github.com/koderover/zadig/tree/main/examples/voting-app/freestyle-k8s-specifications)
-- 案例中 3 个业务服务的 Dockerfile 文件：[`result`](https://github.com/koderover/zadig/tree/main/examples/voting-app/result)、[`vote`](https://github.com/koderover/zadig/tree/main/examples/voting-app/vote)、[`worker`](https://github.com/koderover/zadig/tree/main/examples/voting-app/worker)
-
+- 案例中 3 个业务服务的 Dockerfile 文件：[`result`](https://github.com/koderover/zadig/tree/main/examples/voting-app/result/Dockerfile)、[`vote`](https://github.com/koderover/zadig/tree/main/examples/voting-app/vote/Dockerfile)、[`worker`](https://github.com/koderover/zadig/tree/main/examples/voting-app/worker/Dockerfile)
 
 案例中有使用 Ingress，请根据自己的域名及解析情况按需修改 [`result`](https://github.com/koderover/zadig/blob/main/examples/voting-app/freestyle-k8s-specifications/result/result-service.yaml#L25) 服务和 [`vote`](https://github.com/koderover/zadig/blob/main/examples/voting-app/freestyle-k8s-specifications/vote/vote-service.yaml#L25) 服务的规则。
 
@@ -88,18 +87,21 @@ Duration: 0:05:00
 
 点击授权按钮，同意授权后，GitHub 会跳转到 Zadig 系统，至此 GitHub 集成完毕。
 
-
 ## 项目配置
 
 Duration: 0:01:00
 
-进入 Zadig 系统，新建项目 `voting`。
+进入 Zadig 系统，点击`新建项目` -> 填写项目名称 `voting` -> 选择 `K8s YAML 项目` -> 点击立即创建。
 
-![onboarding-1](./img/voting_onboarding_create_project.gif)
+![onboarding-1](./img/create_voting_project.png)
 
-## 创建服务与服务构建
+![onboarding-1](./img/create_voting_project_1.png)
+
+## 新建服务并配置构建
 
 Duration: 0:03:00
+
+### 新建服务
 
 这里我们需要为以下 5 个服务添加服务配置：
 
@@ -116,20 +118,27 @@ Duration: 0:03:00
 * result
 
 Negative
-: 服务配置指的是 YAML 对这个服务的定义。Kubernetes 可以根据这个定义产生出服务实例。可以理解为 Service as Code。
+: 服务配置指的是 YAML 对这个服务的定义，Kubernetes 可以根据这个定义产生出服务实例。可以理解为 Service as Code。
 
+Zadig 提供三种方式管理服务配置：
 
-Zadig 提供两种方式管理这些模板：
+* 手工输入：在创建服务时手动输入服务的 K8s YAML 配置文件，内容存储在 Zadig 系统中。
+* 从代码库同步：服务的 K8s YAML 配置文件在代码库中，从代码库中同步服务配置。之后提交到该代码库的 YAML 变更会被自动同步到 Zadig 系统上。
+* 使用模板新建：在 Zadig 平台中创建服务 K8s YAML 模板，创建服务时，在模板的基础上对服务进行重新定义。
 
-* 系统平台管理：在 Zadig 中直接输入 YAML 。
-* 代码仓导入与同步：从某个代码仓库中导入，之后提交到该代码仓的 YAML 变更会被自动同步到 Zadig 系统上。
+这里，我们使用从代码库同步的方式。点击`从代码库同步`按钮 -> 选择仓库信息 -> 选择文件目录 `examples`->`voting-app`->`freestyle-k8s-specifications` -> 点击`同步`按钮即可。
 
-这里，我们使用代码仓导入的方式。案例所需 YAML 配置位于 [koderover/zadig](https://github.com/koderover/zadig) 仓库的 [freestyle-k8s-specifications](https://github.com/koderover/zadig/tree/master/examples/voting-app/freestyle-k8s-specifications) 文件目录中，现在要做的就是把它们导入。
+![onboarding-5](./img/import_service_from_repo.png)
 
- - 加载服务配置：点击`仓库托管`按钮 -> 选择仓库信息 -> 选择文件目录。Zadig 支持一次性导入多个服务，同步 `examples`->`voting-app`->`freestyle-k8s-specifications` 文件目录可导入此次案例中所需的 5 个服务。
- - 配置服务构建：选择服务 -> 点击`添加构建` -> 填写构建脚本。
+![onboarding-5](./img/import_service_from_repo_1.png)
 
-![onboarding-5](./img/voting_onboarding_5.gif)
+### 配置构建
+
+接下来为服务配置构建，以便于后续对服务进行持续交付，具体操作步骤：选择具体的服务 -> 点击`添加构建` -> 填写代码信息和构建脚本。
+
+![onboarding-5](./img/config_build_for_vote.png)
+
+![onboarding-5](./img/config_build_for_vote_1.png)
 
 以 `vote` 服务为例，在构建脚本中填写以下代码：
 
@@ -141,66 +150,70 @@ docker push $IMAGE
 
 重复以上配置服务构建过程，完成 `vote`、`worker` 和 `result` 的构建配置，注意根据不同的服务修改脚本中的 `&lt;service-directory&gt;`参数。
 
-
-## 加入运行环境
+## 加入环境
 
 Duration: 0:01:00
 
-- 点击向导的「下一步」。这时，Zadig 会根据你的配置，创建两套环境（dev，qa），以及相关工作流。
+- 点击向导的「下一步」。这时，Zadig 会根据你的配置，创建两套包括上述 5 个服务的环境以及相关工作流，如下图所示。
 
 ![onboarding-6](./img/voting_onboarding_6.png)
 
-- 点击下一步完成向导。至此，onboarding 完成。一个有 5 个微服务的系统，2 套环境、3 条工作流已经产生。
+- 继续点击下一步完成向导流程。
 
 ![onboarding-7](./img/voting_onboarding_7.png)
+
+- 至此，一个有 5 个微服务的项目、2 套环境、3 条工作流已经产生，可点击项目名称查看项目的整体信息。
+
+![onboarding-7](./img/voting_project_overview.png)
 
 ## 工作流交付
 
 Duration: 0:01:00
 
-- 点击运行触发工作流启动。
+使用工作流对环境中的服务进行部署更新，以 `dev` 环境为例操作步骤如下。
 
-![workflow-1](./img/voting_workflow_1.png)
+- 点击 `voting-workflow-dev` 工作流 -> 选择需要更新的服务（比如 `vote` 和 `result`），点击「启动任务」运行工作流。
 
-- 选择需要更新的服务，比如 `vote` 和 `result`，点击「启动任务」运行工作流。
+![workflow-1](./img/run_workflow_dev.png)
 
-![workflow-2](./img/voting_workflow_2.png)
-
-- 查看工作流运行状况：
+- 触发工作流后，可查看工作流运行状况，点击服务左侧的展开图标可查看服务构建的实时日志。
 
 ![workflow-3](./img/voting_workflow_3.png)
 
-- 下面是项目的总体状态：
+- 待工作流运行完毕，进入 `dev` 环境，可看到 `vote` 服务和 `result` 服务被部署更新成功，镜像信息均被更新。
 
-![workflow-4](./img/voting_workflow_4.png)
+![workflow-3](./img/show_dev_env_info.png)
 
-- 进入集成环境，查看服务列表并点击 `result` 和 `vote` 暴露出来的 URL 可以查看网站。
+- 点击 `result` 和 `vote` 暴露出来的 URL 可以查看网站。
+
+Negative
+: 需要注意此处的 URL 正常访问依赖于服务的 Ingress 配置，需要在准备工作中根据自己的域名及解析情况按需修改。
 
 ![workflow-5](./img/voting_workflow_5.png)
+
 `vote` 页面：
+
 ![workflow-6](./img/voting_workflow_6.png)
+
 `result` 页面：
+
 ![workflow-7](./img/voting_workflow_7.png)
 
 ## 配置自动触发工作流
 
 Duration: 0:02:00
 
-添加触发器，使得代码 Push 或者 Pull Request 都触发 result，vote，worker 三个服务的重新构建和部署：
+添加触发器，使得代码 Push commit、Pull Request、Push tag 都能自动触发 result、vote 服务的重新构建和部署。
 
-- 进入工作流配置页面
+- 配置工作流
 
 ![trigger-1](./img/voting_trigger_1.png)
 
-- 添加 Webhook 触发器
-
-![trigger-2](./img/voting_trigger_2.png)
-
-- 配置 Webhook 触发器
+- 添加 Webhook 触发器 -> 打开 Webhook 开关 -> 添加配置 -> 填写配置
 
 ![trigger-3](./img/voting_trigger_3.png)
 
-- 保存工作流
+- 保存对工作流的修改
 
 ![trigger-4](./img/voting_trigger_4.png)
 
@@ -208,14 +221,32 @@ Duration: 0:02:00
 
 Duration: 0:02:00
 
-提交 GitHub PR 修改源代码，交换 vote 服务中 `CATS` 和 `DOGS` 的背景颜色。
+- 提交 GitHub PR 修改源代码，交换 `vote` 服务中 `CATS` 和 `DOGS` 的背景颜色。
 
 ![trigger-5](./img/voting_trigger_5.png)
 
-- 进入 `项目`->`voting`->`工作流`->`voting-workflow-dev` 查看工作流，可以看到 PR 变更已自动触发工作流执行：
+- 在 GitHub 的 PR 页面中，会有触发工作流的信息。可点击 `Details` 链接快速跳转到触发的工作流
+
+![trigger-6](./img/voting_trigger_6_2.png)
 
 ![trigger-6](./img/voting_trigger_6.png)
 
-- 待 `voting-workflow-dev` 工作流执行完毕，进入 `项目`->`voting`->`集成环境`，点击 `dev` 环境中 `vote` 服务的服务入口，查看网站结果，可以看见 `CATS` 和 `DOGS` 背景栏颜色已被更改。
+- 待工作流执行完毕，进入 `项目`->`voting`->`集成环境`，点击 `dev` 环境中 `vote` 服务的服务入口，查看网站结果，可以看见 `CATS` 和 `DOGS` 背景栏颜色已被更改。
 
-![trigger-8](./img/voting_trigger_7.png)
+![trigger-8](./img/voting_trigger_7.png) 
+
+## 配置 IM 通知
+
+Duration: 0:02:00
+
+- 配置工作流
+
+![IM-1](./img/voting_trigger_1.png)
+
+- 添加通知 -> 参考 [IM 通知](https://docs.koderover.com/zadig/v1.11.0/project/workflow/#im-%E7%8A%B6%E6%80%81%E9%80%9A%E7%9F%A5)填写相关配置 -> 保存修改
+
+![IM-1](./img/im_config.png)
+
+- 工作流执行后，会自动将运行结果和环境、服务等信息推送到 IM 系统中，方便及时跟进
+
+![IM-1](./img/im_config_1.png)
