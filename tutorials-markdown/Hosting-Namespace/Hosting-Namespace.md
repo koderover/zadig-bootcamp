@@ -32,7 +32,7 @@ Duration: 0:05:00
 
 ### 小贴士
 
-如果您完全依照本教程进行托管的实践，需要参考上述背景在您自己的集群中部署相关服务，快捷操作如下：
+如果完全依照本教程进行托管的实践，需要参考上述背景在自己的集群中部署相关服务，快捷操作如下：
 
 - 将 [frontend](https://github.com/koderover/zadig/blob/main/examples/microservice-demo/k8s-yaml/frontend/) 下三个文件的内容依次保存为 deployment-frontend.yaml、ingress-frontend.yaml、service-frontend.yaml，请根据自己的域名及解析情况按需修改 [frontend 服务的 ingress 域名](https://github.com/koderover/zadig/blob/main/examples/microservice-demo/k8s-yaml/frontend/ingress.yaml#L12) ，并在集群中执行：
     - kubectl -n microservice apply -f deployment-frontend.yaml

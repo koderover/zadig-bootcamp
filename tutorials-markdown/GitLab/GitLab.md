@@ -19,7 +19,7 @@ Duration: 0:01:00
 
 Duration: 0:02:00
 
-[项目案例源码](https://github.com/koderover/zadig/tree/master/examples/microservice-demo) 供您直接使用，该代码仓库主要包含：
+项目案例源码：[项目案例源码](https://github.com/koderover/zadig/tree/master/examples/microservice-demo)，该代码仓库主要包含：
 
   - 服务 YAML 文件： [`https://github.com/koderover/zadig/tree/main/examples/microservice-demo/k8s-yaml`](https://github.com/koderover/zadig/tree/main/examples/microservice-demo/k8s-yaml)
   - 服务 Dockerfile 文件：

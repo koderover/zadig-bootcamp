@@ -21,7 +21,7 @@ Duration: 0:02:00
 
 ### 准备案例源码
 
-[项目案例源码](https://gitee.com/koderover/zadig/tree/main/examples/microservice-demo) 供您直接使用，该代码仓库主要包含：
+[项目案例源码](https://gitee.com/koderover/zadig/tree/main/examples/microservice-demo)在 Gitee 仓库可直接使用，该代码仓库主要包含：
 
   - 服务 YAML 文件： [`https://gitee.com/koderover/zadig/tree/main/examples/microservice-demo/k8s-yaml`](https://gitee.com/koderover/zadig/tree/main/examples/microservice-demo/k8s-yaml)
   - 服务 Dockerfile 文件：
@@ -203,7 +203,7 @@ Duration: 0:02:00
 
 <!-- 暂不支持将工作流反馈到 Gitee PR 信息中，待支持后，该部分内容可修改 -->
 
-- 提交 Gitee PR 修改源代码
+- 以 Pull Request 为例，提交 Gitee PR 修改源代码
 
 ![webhook_trigger_workflow](./img/new_gitee_pr.png)
 
