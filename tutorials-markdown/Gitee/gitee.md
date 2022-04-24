@@ -28,17 +28,6 @@ Duration: 0:02:00
     - Frontend Dockerfile：[`https://gitee.com/koderover/zadig/blob/main/examples/microservice-demo/frontend/Dockerfile`](https://gitee.com/koderover/zadig/blob/main/examples/microservice-demo/frontend/Dockerfile)
     - Backend Dockerfile：[`https://gitee.com/koderover/zadig/blob/main/examples/microservice-demo/backend/Dockerfile`](https://gitee.com/koderover/zadig/blob/main/examples/microservice-demo/backend/Dockerfile)
 
-### 安装软件包
-
-目前系统内置的 Golang 版本无法满足本例中后端服务的构建诉求，管理员可通过在`系统设置` -> `软件包管理`中添加新的 Golang 版本，以 `go 1.16.13` 为例说明如下。
-
-- `名称`：go
-- `版本`：1.16.13
-- `Bin Path`：$HOME/go/bin
-- `启用`：开启`启用该软件包`
-- `安装包地址`：https://go.dev/dl/go1.16.13.linux-amd64.tar.gz
-- `安装脚本`：tar -C $HOME -xzf ${FILEPATH}
-
 ![Gitee](./img/install_go_1.16.13.png)
 
 ## 接入 Gitee 代码源
@@ -133,7 +122,7 @@ Zadig 提供三种方式管理服务配置：
 ![config_build](./img/config_backend_build_1.png)
 
 构建配置说明：
-1. 应用列表选择 `go 1.16.13`
+1. 应用列表选择 `go 1.13`
 2. 代码信息，选择 `microservice-demo` 所在的代码仓库
 3. 构建脚本如下：
 

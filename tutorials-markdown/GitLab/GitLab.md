@@ -31,17 +31,6 @@ Duration: 0:02:00
 Positive
 : 只需要将 microservice-demo 目录下的内容放在 microservice-demo 库中即可，无需在 GitLab 上准备整个 zadig 仓库。
 
-目前系统内置的 Golang 版本无法满足本例中后端服务的构建诉求，管理员可通过在`系统设置` -> `软件包管理`中添加新的 Golang 版本，以 `go 1.16.13` 为例说明如下。
-
-- `名称`：go
-- `版本`：1.16.13
-- `Bin Path`：$HOME/go/bin
-- `启用`：开启`启用该软件包`
-- `安装包地址`：https://go.dev/dl/go1.16.13.linux-amd64.tar.gz
-- `安装脚本`：tar -C $HOME -xzf ${FILEPATH}
-
-![GitLab](./img/install_go_1.16.13.png)
-
 ## 接入 GitLab 代码源
 
 Duration: 0:05:00
@@ -137,7 +126,7 @@ Positive
 ![config_build](./img/config_backend_build_1.png)
 
 构建配置说明：
-1. 应用列表选择 `go 1.16.13`
+1. 应用列表选择 `go 1.13`
 2. 代码信息，选择 `microservice-demo` 所在的代码仓库
 3. 构建脚本如下：
 
