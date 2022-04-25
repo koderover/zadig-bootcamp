@@ -114,7 +114,6 @@ Zadig 提供三种方式管理服务配置：
 
 backend 服务的配置内容如下：
 
-::: details
 ``` yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -161,11 +160,9 @@ spec:
       port: 20219
       targetPort: 20219
 ```
-:::
 
 frontend 服务的配置内容如下：
 
-::: details
 ``` yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -241,7 +238,6 @@ spec:
       port: 80
       targetPort: 80
 ```
-:::
 
 ### 配置构建
 
