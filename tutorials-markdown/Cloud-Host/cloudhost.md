@@ -17,14 +17,14 @@ Duration: 0:01:00
 
 Duration: 0:05:00
 
-- [项目案例源码](https://github.com/koderover/zadig/tree/master/examples/microservice-demo) 供您直接使用，该代码仓库主要包含
+- 项目案例源码：[项目案例源码](https://github.com/koderover/zadig/tree/master/examples/microservice-demo)，该代码仓库主要包含
   - Golang 服务的部署脚本：[https://github.com/koderover/zadig/blob/main/examples/microservice-demo/vm/restart.sh](https://github.com/koderover/zadig/blob/main/examples/microservice-demo/vm/restart.sh)，需事先放在云主机上。
   - 访问的 nginx 配置：[https://github.com/koderover/zadig/blob/main/examples/microservice-demo/frontend/vm/nginx.conf](https://github.com/koderover/zadig/blob/main/examples/microservice-demo/frontend/vm/nginx.conf)，（需确保云主机上安装 nginx，将此文件放在 nginx 配置目录下并使其生效)
 - 准备 Zadig 系统可访问的两台云主机，分别用于部署 dev 环境和 qa 环境。
 
 说明：
 1. 请先 fork 以上代码库，然后在 Zadig 上集成个人代码仓库，详见[文档](https://docs.koderover.com/zadig/settings/codehost/github/)
-2. 本教程使用的云主机与 Zadig 系统在同一内网环境，用于 dev 环境和 qa 环境的云主机名称分别为 `dev`、`qa`，IP 地址分别为 `172.16.0.23`、`172.16.0.33`，请根据您的实际主机地址修改。
+2. 本教程使用的云主机与 Zadig 系统在同一内网环境，用于 dev 环境和 qa 环境的云主机名称分别为 `dev`、`qa`，IP 地址分别为 `172.16.0.23`、`172.16.0.33`，请根据你的实际主机地址修改。
 3. 本项目案例实现的主要功能：展示前后端代码的构建时间。
 
 ## 配置主机资源

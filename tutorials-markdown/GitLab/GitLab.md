@@ -19,7 +19,7 @@ Duration: 0:01:00
 
 Duration: 0:02:00
 
-[项目案例源码](https://github.com/koderover/zadig/tree/master/examples/microservice-demo) 供您直接使用，该代码仓库主要包含：
+项目案例源码：[项目案例源码](https://github.com/koderover/zadig/tree/master/examples/microservice-demo)，该代码仓库主要包含：
 
   - 服务 YAML 文件： [`https://github.com/koderover/zadig/tree/main/examples/microservice-demo/k8s-yaml`](https://github.com/koderover/zadig/tree/main/examples/microservice-demo/k8s-yaml)
   - 服务 Dockerfile 文件：
@@ -30,17 +30,6 @@ Duration: 0:02:00
 
 Positive
 : 只需要将 microservice-demo 目录下的内容放在 microservice-demo 库中即可，无需在 GitLab 上准备整个 zadig 仓库。
-
-目前系统内置的 Golang 版本无法满足本例中后端服务的构建诉求，管理员可通过在`系统设置` -> `软件包管理`中添加新的 Golang 版本，以 `go 1.16.13` 为例说明如下。
-
-- `名称`：go
-- `版本`：1.16.13
-- `Bin Path`：$HOME/go/bin
-- `启用`：开启`启用该软件包`
-- `安装包地址`：https://go.dev/dl/go1.16.13.linux-amd64.tar.gz
-- `安装脚本`：tar -C $HOME -xzf ${FILEPATH}
-
-![GitLab](./img/install_go_1.16.13.png)
 
 ## 接入 GitLab 代码源
 
@@ -94,11 +83,11 @@ Duration: 0:01:00
 
 进入 Zadig 系统，点击`新建项目` -> 填写项目名称 `microservice-demo` -> 选择 `K8s YAML 项目` -> 点击`立即创建` -> 点击`下一步`。
 
-![onboarding-1](./img/create_voting_project.png)
+![onboarding-1](./img/create_project_1.png)
 
-![onboarding-1](./img/create_voting_project_1.png)
+![onboarding-1](./img/create_project_2.png)
 
-![onboarding-1](./img/create_voting_project_2.png)
+![onboarding-1](./img/create_project_3.png)
 
 ## 新建服务并配置构建
 
@@ -137,7 +126,7 @@ Positive
 ![config_build](./img/config_backend_build_1.png)
 
 构建配置说明：
-1. 应用列表选择 `go 1.16.13`
+1. 应用列表选择 `go 1.13`
 2. 代码信息，选择 `microservice-demo` 所在的代码仓库
 3. 构建脚本如下：
 
@@ -190,7 +179,7 @@ Duration: 0:01:00
 
 - 触发工作流后，可查看工作流运行状况，点击服务左侧的展开图标可查看服务构建的实时日志。
 
-![workflow-3](./img/voting_workflow_3.png)
+![workflow-3](./img/run_workflow_dev_1.png)
 
 - 待工作流运行完毕，进入 `dev` 环境，可看到 `backend` 服务和 `frontend` 服务被部署更新成功，镜像信息均被更新。
 
@@ -204,15 +193,15 @@ Duration: 0:02:00
 
 - 配置工作流
 
-![trigger-1](./img/voting_trigger_1.png)
+![trigger-1](./img/config_dev_workflow.png)
 
 - 添加 Webhook 触发器 -> 打开 Webhook 开关 -> 添加配置 -> 填写配置
 
-![trigger-3](./img/voting_trigger_3.png)
+![trigger-1](./img/dev_workflow_trigger_2.png)
 
 - 保存对工作流的修改
 
-![trigger-4](./img/voting_trigger_4.png)
+![trigger-1](./img/dev_workflow_trigger_3.png)
 
 ## 改动代码，触发工作流
 
@@ -220,13 +209,13 @@ Duration: 0:02:00
 
 - 提交 GitLab PR 修改源代码。在 PR 页面中会有触发工作流的信息，可点击工作流链接快速跳转到触发的工作流
 
-![trigger-6](./img/voting_trigger_6_2.png)
+![trigger-6](./img/gitlab_pr.png)
 
-![trigger-6](./img/voting_trigger_6.png)
+![trigger-6](./img/workflow_info.png)
 
-- 待工作流执行完毕，进入 `项目`->`voting`->`环境`，可看到服务的镜像已被自动触发的工作流更新。
+- 待工作流执行完毕，进入 `项目`->`microservice-demo`->`环境`，可看到服务的镜像已被自动触发的工作流更新。
 
-![trigger-8](./img/voting_trigger_7.png) 
+![trigger-8](./img/service_image_info.png)
 
 ## 配置 IM 通知
 
@@ -234,7 +223,7 @@ Duration: 0:02:00
 
 - 配置工作流
 
-![IM-1](./img/voting_trigger_1.png)
+![IM-1](./img/config_dev_workflow.png)
 
 - 添加通知 -> 参考 [IM 通知](https://docs.koderover.com/zadig/v1.11.0/project/workflow/#im-%E7%8A%B6%E6%80%81%E9%80%9A%E7%9F%A5)填写相关配置 -> 保存修改
 
