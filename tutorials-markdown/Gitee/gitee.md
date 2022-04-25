@@ -21,7 +21,7 @@ Duration: 0:02:00
 
 ### 准备案例源码
 
-[项目案例源码](https://gitee.com/koderover/zadig/tree/main/examples/microservice-demo)在 Gitee 仓库可直接使用，该代码仓库主要包含：
+本案例所用代码及配置 fork 自[项目案例源码](https://gitee.com/koderover/zadig/tree/main/examples/microservice-demo)，主要包含：
 
   - 服务 YAML 文件： [`https://gitee.com/koderover/zadig/tree/main/examples/microservice-demo/k8s-yaml`](https://gitee.com/koderover/zadig/tree/main/examples/microservice-demo/k8s-yaml)
   - 服务 Dockerfile 文件：
