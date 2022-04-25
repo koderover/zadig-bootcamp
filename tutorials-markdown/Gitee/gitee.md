@@ -24,9 +24,9 @@ Duration: 0:02:00
 本案例所用代码及配置 fork 自[项目案例源码](https://gitee.com/koderover/zadig/tree/main/examples/microservice-demo)，主要包含：
 
   - 服务 YAML 文件： [`https://gitee.com/koderover/zadig/tree/main/examples/microservice-demo/k8s-yaml`](https://gitee.com/koderover/zadig/tree/main/examples/microservice-demo/k8s-yaml)
-  - 服务 Dockerfile 文件：
-    - Frontend Dockerfile：[`https://gitee.com/koderover/zadig/blob/main/examples/microservice-demo/frontend/Dockerfile`](https://gitee.com/koderover/zadig/blob/main/examples/microservice-demo/frontend/Dockerfile)
-    - Backend Dockerfile：[`https://gitee.com/koderover/zadig/blob/main/examples/microservice-demo/backend/Dockerfile`](https://gitee.com/koderover/zadig/blob/main/examples/microservice-demo/backend/Dockerfile)
+  - 服务源码及 Dockerfile 文件：
+    - Frontend：[`https://gitee.com/koderover/zadig/blob/main/examples/microservice-demo/frontend/`](https://gitee.com/koderover/zadig/blob/main/examples/microservice-demo/frontend/)
+    - Backend：[`https://gitee.com/koderover/zadig/blob/main/examples/microservice-demo/backend/`](https://gitee.com/koderover/zadig/blob/main/examples/microservice-demo/backend/)
 
 ## 接入 Gitee 代码源
 
@@ -105,11 +105,143 @@ Zadig 提供三种方式管理服务配置：
 * 从代码库同步：服务的 K8s YAML 配置文件在代码库中，从代码库中同步服务配置。之后提交到该代码库的 YAML 变更会被自动同步到 Zadig 系统上。
 * 使用模板新建：在 Zadig 平台中创建服务 K8s YAML 模板，创建服务时，在模板的基础上对服务进行重新定义。
 
-这里，我们使用从代码库同步的方式：点击`从代码库同步`按钮 -> 选择仓库信息 -> 选择文件目录 `k8s-yaml` -> 点击`同步`按钮即可。
+<!-- 目前不支持从 Gitee 代码源同步创建服务，待支持后修改服务创建方式 -->
+<!-- 这里，我们使用从代码库同步的方式：点击`从代码库同步`按钮 -> 选择仓库信息 -> 选择文件目录 `k8s-yaml` -> 点击`同步`按钮即可。 -->
+
+这里，我们使用手工输入的方式：点击`手工输入`按钮 -> 填写服务名称 -> 填写服务 YAML 配置内容 -> 点击`保存`按钮即可。
 
 ![onboarding](./img/add_service_1.png)
 
-![onboarding](./img/add_service_2.png)
+backend 服务的配置内容如下：
+
+::: details
+``` yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  labels:
+    app.kubernetes.io/name: demo
+    app.kubernetes.io/instance: backend
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: demo
+      app.kubernetes.io/instance: backend
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: demo
+        app.kubernetes.io/instance: backend
+    spec:
+      containers:
+        - name: backend
+          image: ccr.ccs.tencentyun.com/koderover-public/backend:latest
+          imagePullPolicy: Always
+          command:
+            - /workspace/backend
+          ports:
+            - protocol: TCP
+              containerPort: 20219
+      imagePullSecrets:
+        - name: default-registry-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+  labels:
+    app.kubernetes.io/name: demo
+    app.kubernetes.io/instance: backend
+spec:
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 20219
+      targetPort: 20219
+```
+:::
+
+frontend 服务的配置内容如下：
+
+::: details
+``` yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  labels:
+    app.kubernetes.io/instance: frontend
+    app.kubernetes.io/name: demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: frontend
+      app.kubernetes.io/name: demo
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/instance: frontend
+        app.kubernetes.io/name: demo
+    spec:
+      containers:
+        - name: frontend
+          image: ccr.ccs.tencentyun.com/koderover-public/frontend:latest
+          imagePullPolicy: Always
+          ports:
+            - protocol: TCP
+              containerPort: 80
+          resources:
+            limits:
+              cpu: 1
+              memory: 512Mi
+            requests:
+              cpu: 100m
+              memory: 100M
+      imagePullSecrets:
+        - name: default-registry-secret
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: frontend
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: 100m
+  labels:
+    app.kubernetes.io/instance: frontend
+    app.kubernetes.io/name: demo
+spec:
+  rules:
+  - host: {{.demo_domain}}
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: frontend
+          servicePort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+  labels:
+    app.kubernetes.io/instance: frontend
+    app.kubernetes.io/name: demo
+spec:
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+```
+:::
 
 ### 配置构建
 
@@ -120,12 +252,12 @@ Zadig 提供三种方式管理服务配置：
 ![config_build](./img/config_backend_build_1.png)
 
 构建配置说明：
-1. 应用列表选择 `go 1.13`
-2. 代码信息，选择 `microservice-demo` 所在的代码仓库
+1. 应用列表：选择 `go 1.13`
+2. 代码信息：准备工作中 fork 的代码仓库
 3. 构建脚本如下：
 
 ```bash
-cd microservice-demo/backend
+cd zadig/examples/microservice-demo/backend
 make build-backend
 docker build -t $IMAGE -f Dockerfile .
 docker push $IMAGE
@@ -136,11 +268,11 @@ docker push $IMAGE
 ![config_build](./img/config_frontend_build.png)
 
 构建配置说明：
-1. 代码信息，选择 `microservice-demo` 所在的代码仓库
+1. 代码信息：准备工作中 fork 的代码仓库
 2. 构建脚本如下：
 
 ```bash
-cd microservice-demo/frontend
+cd zadig/examples/microservice-demo/frontend
 docker build -t $IMAGE -f Dockerfile .
 docker push $IMAGE
 ```
@@ -189,13 +321,9 @@ Duration: 0:02:00
 
 ![config_workflow_webhook](./img/config_dev_workflow.png)
 
-- 添加 Webhook 触发器 -> 打开 Webhook 开关 -> 添加配置 -> 填写配置
+- 添加 Webhook 触发器 -> 打开 Webhook 开关 -> 添加配置 -> 填写配置 -> 保存配置 -> 保存对工作流的修改
 
 ![config_workflow_webhook](./img/dev_workflow_trigger_2.png)
-
-- 保存对工作流的修改
-
-![config_workflow_webhook](./img/dev_workflow_trigger_3.png)
 
 ## 改动代码，触发工作流
 
