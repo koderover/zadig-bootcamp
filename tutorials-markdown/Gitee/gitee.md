@@ -108,136 +108,10 @@ Zadig 提供三种方式管理服务配置：
 <!-- 目前不支持从 Gitee 代码源同步创建服务，待支持后修改服务创建方式 -->
 <!-- 这里，我们使用从代码库同步的方式：点击`从代码库同步`按钮 -> 选择仓库信息 -> 选择文件目录 `k8s-yaml` -> 点击`同步`按钮即可。 -->
 
-这里，我们使用手工输入的方式：点击`手工输入`按钮 -> 填写服务名称 -> 填写服务 YAML 配置内容 -> 点击`保存`按钮即可。
+这里，我们使用从代码库同步的方式：点击`从代码库同步`按钮 -> 选择仓库信息 -> 选择文件目录 `examples`->`microservice-demo`->`k8s-yaml` -> 点击`同步`按钮即可。
 
 ![onboarding](./img/add_service_1.png)
-
-backend 服务的配置内容如下：
-
-``` yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: backend
-  labels:
-    app.kubernetes.io/name: demo
-    app.kubernetes.io/instance: backend
-spec:
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: demo
-      app.kubernetes.io/instance: backend
-  replicas: 1
-  template:
-    metadata:
-      labels:
-        app.kubernetes.io/name: demo
-        app.kubernetes.io/instance: backend
-    spec:
-      containers:
-        - name: backend
-          image: ccr.ccs.tencentyun.com/koderover-public/backend:latest
-          imagePullPolicy: Always
-          command:
-            - /workspace/backend
-          ports:
-            - protocol: TCP
-              containerPort: 20219
-      imagePullSecrets:
-        - name: default-registry-secret
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: backend
-  labels:
-    app.kubernetes.io/name: demo
-    app.kubernetes.io/instance: backend
-spec:
-  type: NodePort
-  ports:
-    - protocol: TCP
-      port: 20219
-      targetPort: 20219
-```
-
-frontend 服务的配置内容如下：
-
-``` yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: frontend
-  labels:
-    app.kubernetes.io/instance: frontend
-    app.kubernetes.io/name: demo
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app.kubernetes.io/instance: frontend
-      app.kubernetes.io/name: demo
-  strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxUnavailable: 1
-      maxSurge: 1
-  template:
-    metadata:
-      labels:
-        app.kubernetes.io/instance: frontend
-        app.kubernetes.io/name: demo
-    spec:
-      containers:
-        - name: frontend
-          image: ccr.ccs.tencentyun.com/koderover-public/frontend:latest
-          imagePullPolicy: Always
-          ports:
-            - protocol: TCP
-              containerPort: 80
-          resources:
-            limits:
-              cpu: 1
-              memory: 512Mi
-            requests:
-              cpu: 100m
-              memory: 100M
-      imagePullSecrets:
-        - name: default-registry-secret
----
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  name: frontend
-  annotations:
-    nginx.ingress.kubernetes.io/proxy-body-size: 100m
-  labels:
-    app.kubernetes.io/instance: frontend
-    app.kubernetes.io/name: demo
-spec:
-  rules:
-  - host: {{.demo_domain}}
-    http:
-      paths:
-      - path: /
-        backend:
-          serviceName: frontend
-          servicePort: 80
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: frontend
-  labels:
-    app.kubernetes.io/instance: frontend
-    app.kubernetes.io/name: demo
-spec:
-  type: NodePort
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 80
-```
+![onboarding](./img/add_service_2.png)
 
 ### 配置构建
 
@@ -331,7 +205,9 @@ Duration: 0:02:00
 
 ![webhook_trigger_workflow](./img/new_gitee_pr.png)
 
-- 切换到 Zadig 系统，查看工作流 `microservice-demo-workflow-dev`，被自动触发执行
+- 在 Gitee 的 PR 页面中，会有触发工作流的信息。可点击工作流链接快速跳转到 Zadig 中。
+
+![webhook_trigger_workflow](./img/new_gitee_pr_1.png)
 
 ![webhook_trigger_workflow](./img/gitee_pr_trigger_workflow.png)
 
