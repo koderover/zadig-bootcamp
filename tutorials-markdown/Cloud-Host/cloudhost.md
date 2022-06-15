@@ -119,7 +119,7 @@ env
 if [ $ENV_NAME = "dev" ]; then
     VM_NAME="vm_172" # 配置给 dev 环境使用的云主机的名称
 elif [ $ENV_NAME = "qa" ]; then
-    VM_NAME="vm_172" # 配置给 qa 环境使用的云主机的名称
+    VM_NAME="vm_124" # 配置给 qa 环境使用的云主机的名称
 fi
 
 AGENT_NAME="vm_172"
