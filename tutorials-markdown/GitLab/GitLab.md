@@ -163,9 +163,13 @@ Duration: 0:01:00
 
 ![add-to-env](./img/onboarding_env_step_1.png)
 
-- 点击完成向导，一个有 2 个微服务的项目、2 套环境、3 条工作流已经产生，项目概览如下。
+- 点击完成向导，项目概览如下，包括 2 套环境、3 条工作流。
 
 ![microservice_demo_project_overview](./img/microservice_demo_project_overview.png)
+
+- 点击进入到具体的环境中，可查看在环境中运行的服务信息。
+
+![microservice_demo_project_env_overview](./img/microservice_demo_project_env_overview.png)
 
 ## 工作流交付
 
