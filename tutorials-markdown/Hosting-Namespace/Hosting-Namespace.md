@@ -32,7 +32,7 @@ Duration: 0:05:00
 
 ### 小贴士
 
-如果完全依照本教程进行托管的实践，需要参考上述背景在自己的集群中部署相关服务，将案例源码 [microservice-demo](https://github.com/koderover/zadig/tree/main/examples/microservice-demo) 克隆到本地后，根据自己的域名及解析情况按需修改 [ingress 域名](https://github.com/koderover/zadig/blob/main/examples/microservice-demo/k8s-yaml/frontend/ingress.yaml#L12)，执行以下快捷操作：
+如果完全依照本教程进行托管的实践，需要确保 K8s 集群版本在 1.19 及以上，参考上述背景在自己的集群中部署相关服务，将案例源码 [microservice-demo](https://github.com/koderover/zadig/tree/main/examples/microservice-demo) 克隆到本地后，根据自己的域名及解析情况按需修改 [ingress 域名](https://github.com/koderover/zadig/blob/main/examples/microservice-demo/k8s-yaml/frontend/ingress.yaml#L12)，执行以下快捷操作：
 
 ``` bash
 cd {microservice-demo 所在的目录}/k8s-yaml/backend && kubectl -n microservice apply -f .

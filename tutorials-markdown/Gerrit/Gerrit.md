@@ -22,7 +22,9 @@ Duration: 0:01:00
 - 案例中 5 个服务的 Kubernetes YAML 配置：[`YAML`](https://github.com/koderover/zadig/tree/main/examples/voting-app/freestyle-k8s-specifications)
 - 案例中 3 个业务服务的 Dockerfile 文件：[`result`](https://github.com/koderover/zadig/tree/main/examples/voting-app/result/Dockerfile)、[`vote`](https://github.com/koderover/zadig/tree/main/examples/voting-app/vote/Dockerfile)、[`worker`](https://github.com/koderover/zadig/tree/main/examples/voting-app/worker/Dockerfile)
 
-案例中有使用 Ingress，请根据自己的域名及解析情况按需修改 result 服务和 vote 服务的规则。
+案例中有使用 Ingress，对 K8s 集群版本有要求（1.19 及以上），请根据自己的域名及解析情况按需修改 result 服务和 vote 服务的规则，并确保 K8s 集群版本在 1.19 及以上。
+- result 服务 Ingress 配置：[result](https://github.com/koderover/zadig/blob/main/examples/voting-app/freestyle-k8s-specifications/result/result-service.yaml#L17)
+- vote 服务 Ingress 配置：[vote](https://github.com/koderover/zadig/blob/main/examples/voting-app/freestyle-k8s-specifications/vote/vote-service.yaml#L17)
 
 > 案例代码需先将[源码](https://github.com/koderover/zadig/tree/main/examples/voting-app)放在 Gerrit 代码库，再进行后续操作。
 
