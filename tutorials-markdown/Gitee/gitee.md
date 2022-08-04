@@ -105,9 +105,6 @@ Zadig 提供三种方式管理服务配置：
 * 从代码库同步：服务的 K8s YAML 配置文件在代码库中，从代码库中同步服务配置。之后提交到该代码库的 YAML 变更会被自动同步到 Zadig 系统上。
 * 使用模板新建：在 Zadig 平台中创建服务 K8s YAML 模板，创建服务时，在模板的基础上对服务进行重新定义。
 
-<!-- 目前不支持从 Gitee 代码源同步创建服务，待支持后修改服务创建方式 -->
-<!-- 这里，我们使用从代码库同步的方式：点击`从代码库同步`按钮 -> 选择仓库信息 -> 选择文件目录 `k8s-yaml` -> 点击`同步`按钮即可。 -->
-
 这里，我们使用从代码库同步的方式：点击`从代码库同步`按钮 -> 选择仓库信息 -> 选择文件目录 `examples`->`microservice-demo`->`k8s-yaml` -> 点击`同步`按钮即可。
 
 ![onboarding](./img/add_service_1.png)
@@ -159,9 +156,13 @@ Duration: 0:01:00
 
 ![add_to_env](./img/onboarding_env_step_1.png)
 
-- 点击完成向导，一个有 2 个微服务的项目、2 套环境、3 条工作流已经产生，项目概览如下。
+- 点击完成向导，项目概览如下，包括 2 套环境、3 条工作流。
 
 ![microservice_demo_project_overview](./img/microservice_demo_project_overview.png)
+
+- 点击进入到具体的环境中，可查看在环境中运行的服务信息。
+
+![microservice_demo_project_env_overview](./img/microservice_demo_project_env_overview.png)
 
 ## 工作流交付
 
