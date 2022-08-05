@@ -27,7 +27,7 @@ Duration: 0:01:00
 - vote 服务 Ingress 配置：[vote](https://github.com/koderover/zadig/blob/main/examples/voting-app/freestyle-k8s-specifications/vote/vote-service.yaml#L17)
 
 Positive
-: 如果你的 K8s 集群版本在 [1.9, 1.19) 区间内，也可以使用 [此处](https://github.com/koderover/zadig/tree/release-1.13.0/examples/voting-app) 的源码来实践本教程。
+: 如果你的 K8s 集群版本在 [1.9, 1.19) 区间内，可以使用 [此处](https://github.com/koderover/zadig/tree/release-1.13.0/examples/voting-app) 的源码来实践本教程。
 
 ## 接入 Gerrit 代码源
 

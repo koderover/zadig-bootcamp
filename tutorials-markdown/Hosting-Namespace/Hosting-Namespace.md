@@ -43,7 +43,7 @@ cd {microservice-demo 所在的目录}/k8s-yaml/frontend && kubectl -n microserv
 ```
 
 Positive
-: 如果你的 K8s 集群版本在 [1.9, 1.19) 区间内，也可以使用 [此处](https://github.com/koderover/zadig/tree/release-1.13.0/examples/microservice-demo) 的源码来实践本教程。
+: 如果你的 K8s 集群版本在 [1.9, 1.19) 区间内，可以使用 [此处](https://github.com/koderover/zadig/tree/release-1.13.0/examples/microservice-demo) 的源码来实践本教程。
 
 ## 创建托管项目
 

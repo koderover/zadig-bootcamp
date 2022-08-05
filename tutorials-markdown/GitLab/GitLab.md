@@ -30,7 +30,7 @@ Duration: 0:02:00
 在自己的 GitLab 上创建名为 `microservice-demo` 的代码仓库，并将[源码](https://github.com/koderover/zadig/tree/master/examples/microservice-demo)放到 `microservice-demo` 仓库中（只需要将 microservice-demo 目录下的内容放在仓库中即可，无需在 GitLab 上准备整个 zadig 仓库）。
 
 Positive
-: 如果你的 K8s 集群版本在 [1.9, 1.19) 区间内，也可以使用 [此处](https://github.com/koderover/zadig/tree/release-1.13.0/examples/microservice-demo) 的源码来实践本教程。
+: 如果你的 K8s 集群版本在 [1.9, 1.19) 区间内，可以使用 [此处](https://github.com/koderover/zadig/tree/release-1.13.0/examples/microservice-demo) 的源码来实践本教程。
 
 ## 接入 GitLab 代码源
 
