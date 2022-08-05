@@ -23,7 +23,10 @@ Duration: 0:02:00
 - 案例中 5 个服务的 Kubernetes YAML 配置：[`YAML`](https://github.com/koderover/zadig/tree/main/examples/voting-app/freestyle-k8s-specifications)
 - 案例中 3 个业务服务的 Dockerfile 文件：[`result`](https://github.com/koderover/zadig/tree/main/examples/voting-app/result/Dockerfile)、[`vote`](https://github.com/koderover/zadig/tree/main/examples/voting-app/vote/Dockerfile)、[`worker`](https://github.com/koderover/zadig/tree/main/examples/voting-app/worker/Dockerfile)
 
-案例中有使用 Ingress，对 K8s 集群版本有要求（1.19 及以上），请确保 K8s 集群版本在 1.19 及以上，并根据自己的域名及解析情况按需修改 [`result`](https://github.com/koderover/zadig/blob/main/examples/voting-app/freestyle-k8s-specifications/result/result-service.yaml#L25) 服务和 [`vote`](https://github.com/koderover/zadig/blob/main/examples/voting-app/freestyle-k8s-specifications/vote/vote-service.yaml#L25) 服务的规则。
+案例中使用的 Ingress 对 K8s 集群版本有要求（1.19 及以上），请确保 K8s 集群版本在 1.19 及以上，并根据自己的域名及解析情况按需修改 [`result`](https://github.com/koderover/zadig/blob/main/examples/voting-app/freestyle-k8s-specifications/result/result-service.yaml#L25) 服务和 [`vote`](https://github.com/koderover/zadig/blob/main/examples/voting-app/freestyle-k8s-specifications/vote/vote-service.yaml#L25) 服务的规则。
+
+Positive
+: 如果你的 K8s 集群版本在 [1.9, 1.19) 区间内，也可以使用 [此处](https://github.com/koderover/zadig/tree/release-1.13.0/examples/voting-app) 的源码来实践本教程。
 
 ## 接入 GitHub 代码源
 

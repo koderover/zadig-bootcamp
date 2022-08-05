@@ -27,10 +27,10 @@ Duration: 0:02:00
     - Backend Dockerfile：[`https://github.com/koderover/zadig/blob/main/examples/microservice-demo/backend/Dockerfile`](https://github.com/koderover/zadig/blob/main/examples/microservice-demo/backend/Dockerfile)
 - 案例中服务有配置 Ingress，对 K8s 集群版本有要求（1.19 及以上），Ingress 配置位于 [https://github.com/koderover/zadig/blob/main/examples/microservice-demo/k8s-yaml/frontend/ingress.yaml](https://github.com/koderover/zadig/blob/main/examples/microservice-demo/k8s-yaml/frontend/ingress.yaml)
 
-在自己的 GitLab 上创建名为 `microservice-demo` 的代码仓库，并将[源码](https://github.com/koderover/zadig/tree/master/examples/microservice-demo)放到 `microservice-demo` 仓库中。
+在自己的 GitLab 上创建名为 `microservice-demo` 的代码仓库，并将[源码](https://github.com/koderover/zadig/tree/master/examples/microservice-demo)放到 `microservice-demo` 仓库中（只需要将 microservice-demo 目录下的内容放在仓库中即可，无需在 GitLab 上准备整个 zadig 仓库）。
 
 Positive
-: 只需要将 microservice-demo 目录下的内容放在 microservice-demo 库中即可，无需在 GitLab 上准备整个 zadig 仓库。
+: 如果你的 K8s 集群版本在 [1.9, 1.19) 区间内，也可以使用 [此处](https://github.com/koderover/zadig/tree/release-1.13.0/examples/microservice-demo) 的源码来实践本教程。
 
 ## 接入 GitLab 代码源
 
