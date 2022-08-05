@@ -22,6 +22,9 @@ Duration: 0:02:00
 - 服务源码：[`worker`](https://github.com/koderover/zadig/tree/main/examples/voting-app/worker/src/main/java/worker/Worker.java)
 - worker 服务的 Dockerfile 文件：[`Dockerfile`](https://github.com/koderover/zadig/tree/main/examples/voting-app/worker/Dockerfile.j)
 
+Positive
+: 案例中使用的 Ingress 对 K8s 集群版本有要求（1.19 及以上），请确保集群版本满足；如果你的集群版本在 [1.9, 1.19) 区间内，请使用 [此处](https://github.com/koderover/zadig/tree/release-1.13.0/examples/microservice-demo) 的源码来实践本教程。
+
 ## 项目配置
 
 Duration: 0:02:00

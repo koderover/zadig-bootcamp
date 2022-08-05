@@ -32,14 +32,18 @@ Duration: 0:05:00
 
 ### 小贴士
 
-如果完全依照本教程进行托管的实践，需要确保 K8s 集群版本在 1.19 及以上，参考上述背景在自己的集群中部署相关服务，将案例源码 [microservice-demo](https://github.com/koderover/zadig/tree/main/examples/microservice-demo) 克隆到本地后，根据自己的域名及解析情况按需修改 [ingress 域名](https://github.com/koderover/zadig/blob/main/examples/microservice-demo/k8s-yaml/frontend/ingress.yaml#L12)，执行以下快捷操作：
+如果你完全依照本教程进行托管的实践：
+- 案例中使用的 Ingress 对 K8s 集群版本有要求（1.19 及以上），请确保 K8s 集群版本符合
+- 为部署更新服务，案例中有构建部署配置环节，依赖 [Zadig 代码库](https://github.com/koderover/zadig)，请先 fork 至个人仓库，并在系统设置中集成对应代码源，参考：[集成代码源](https://docs.koderover.com/zadig/settings/codehost/github/)
+- 参考上述背景在自己的集群中部署相关服务，将案例源码 [microservice-demo](https://github.com/koderover/zadig/tree/main/examples/microservice-demo) 克隆到本地后，根据自己的域名及解析情况按需修改 [ingress 域名](https://github.com/koderover/zadig/blob/main/examples/microservice-demo/k8s-yaml/frontend/ingress.yaml#L12)，执行以下快捷操作：
 
 ``` bash
 cd {microservice-demo 所在的目录}/k8s-yaml/backend && kubectl -n microservice apply -f .
 cd {microservice-demo 所在的目录}/k8s-yaml/frontend && kubectl -n microservice apply -f .
 ```
 
-此外，为部署更新服务，下文中有为服务配置构建的环节，依赖 [Zadig 代码库](https://github.com/koderover/zadig)，请先 fork [Zadig 代码库](https://github.com/koderover/zadig)至个人仓库，并在系统设置中集成对应代码源，参考：[集成代码源](https://docs.koderover.com/zadig/v1.8.0/settings/codehost/github/)
+Positive
+: 如果你的 K8s 集群版本在 [1.9, 1.19) 区间内，可以使用 [此处](https://github.com/koderover/zadig/tree/release-1.13.0/examples/microservice-demo) 的源码来实践本教程。
 
 ## 创建托管项目
 
