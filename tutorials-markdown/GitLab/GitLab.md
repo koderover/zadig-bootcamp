@@ -111,7 +111,7 @@ Zadig 提供三种方式管理服务配置：
 
 ![onboarding-2](./img/add_service_2.png)
 
-加载服务配置后，设置配置中的自定义变量 `demo_domain` 值为 `micro-$EnvName$-test.co.coderover.cn`。此处使用系统内置变量 `$EnvName$` 来为域名赋值，当环境创建完毕后，不同环境中的服务将会有不同的访问地址。
+加载服务配置后，点击 `frontend` 服务，点击`自动解析变量`，设置配置中的自定义变量 `demo_domain` 值为 `micro-$EnvName$-test.co.coderover.cn`。此处使用系统内置变量 `$EnvName$` 来为域名赋值，当环境创建完毕后，不同环境中的服务将会有不同的访问地址。
 
 Positive
 : 请根据自己的域名及解析情况按需填写此处 `demo_domain` 的值
