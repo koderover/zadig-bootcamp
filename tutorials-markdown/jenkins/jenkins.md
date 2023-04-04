@@ -77,7 +77,7 @@ Zadig 提供三种方式管理服务配置：
 
 ![onboarding](./img/config_build_for_vote.png)
 
-参考[如何配置 Jenkins 构建](https://docs.koderover.com/zadig/v1.11.0/project/build/#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8)完成相关配置，本例中 `vote` 服务构建配置如下。
+参考[如何配置 Jenkins 构建](https://docs.koderover.com/zadig/project/build/#如何使用)完成相关配置，本例中 `vote` 服务构建配置如下。
 
 ![onboarding](./img/config_build_for_vote_1.png)
 
