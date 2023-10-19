@@ -40,7 +40,7 @@ Duration: 2
 
 ### 创建 GitLab 集成密钥
 
-参考文档：<https://docs.koderover.com/zadig/ZadigX%20v1.7.0/settings/codehost/gitlab/>
+参考文档：<<https://docs.koderover.com/zadig/settings/codehost/gitlab/> >
 
 创建过程中需要填写 ZadigX 的回调网址：
 
@@ -128,7 +128,7 @@ Duration: 3
 
 ![](images/2023-10-17_10-09-47.jpg)
 
-1. 选择正确的路径 “course-100/K8s-yaml”
+1. 选择正确的路径 “course-100/k8s-yaml”
 2. 点击 “确定” 按钮。
 
 ![](images/2023-10-17_10-10-38.jpg)
