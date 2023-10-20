@@ -681,7 +681,7 @@ Duration: 5
 ![](images/pre-sales.jpg)
 扫码联系 ZadigX 售前
 
-![](images/wc-KodeRover%20.jpg)
+![](images/wc-KodeRover.jpg)
 扫码关注 KodeRover 微信公众号
 
 
