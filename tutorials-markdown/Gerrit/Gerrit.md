@@ -4,6 +4,8 @@ categories: Gerrit
 environments: Web
 status: Published
 feedback link: https://github.com/koderover/zadig-bootcamp/issues
+video link: https://www.baidu.com
+banner: https://www.google.com
 
 
 # 如何使用 Gerrit + Zadig 实现产品级持续交付
