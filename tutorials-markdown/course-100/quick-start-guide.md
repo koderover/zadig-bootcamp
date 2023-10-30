@@ -17,7 +17,7 @@ Duration: 2
 
 前提条件：
 
-1. 已经收到了 Zadig 团队为本培训课程注册学员提供的系统访问账号，并已经能正常登录。
+1. 准备 Zadig 试用环境：[在线试用](https://koderover.com/trial)或者[下载安装](https://koderover.com/installer)。
 2. 将示例代码 Fork 到个人账户中，为变更这套代码做好准备。
 3. 在 GitLab 中创建用于代码仓库集成接入的应用认证密钥。
 
