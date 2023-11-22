@@ -22,18 +22,24 @@ Duration: 0:05:00
   - 访问的 nginx 配置：[https://github.com/koderover/zadig/blob/main/examples/microservice-demo/frontend/vm/nginx.conf](https://github.com/koderover/zadig/blob/main/examples/microservice-demo/frontend/vm/nginx.conf)
 - 准备 Zadig 系统可访问的两台主机，分别用于部署 dev 环境和 qa 环境，并确保主机上安装 nginx，将上述 [nginx 配置](https://github.com/koderover/zadig/blob/main/examples/microservice-demo/frontend/vm/nginx.conf)放在 nginx 配置目录下并使其生效
 
+> 说明：
+> 1. 请先 fork 以上代码库，然后在 Zadig 上集成个人代码仓库，详见[文档](https://docs.koderover.com/zadig/settings/codehost/github/)
+> 2. 本教程使用的云主机与 Zadig 系统在同一内网环境，用于 dev 环境和 qa 环境的云主机名称分别为 `dev`、`qa`，IP 地址分别为 `172.16.0.23`、`172.16.0.33`，请根据您的实际主机地址修改。
+
+
 ## 配置主机资源
 
 Duration: 0:03:00
 
-登录 Zadig，进入`系统设置` -> `主机管理`，点击`新建`，填写主机信息。
+登录 Zadig，进入`资源配置` -> `主机管理`，点击`新建`，填写主机信息。
 
 ![创建](./img/add_host.png "创建主机")
 
 参数说明：
-- 主机名称：可识别有意义即可，本例中用于部署 dev 环境和 qa 环境的主机名分别为 vm_172、vm_124
+- 主机名称：可识别有意义即可，本例中用于部署 dev 环境和 qa 环境的主机名分别为 vm_23、vm_24
 - 用户名：登录主机的用户名
-- 私钥：可通过以下步骤生成
+- 登录主机：选择 `是`
+- SSH 私钥：可通过以下步骤生成
 
 ```bash
 # 步骤一：在主机的 $HOME/.ssh 目录下执行以下命令生成 SSH 密钥对
@@ -100,38 +106,33 @@ tar cvf $PKG_FILE backend
 
 ![资源配置](./img/resource_config.png "资源配置")
 
-- dev 环境：本例中使用主机 vm_172 进行 dev 环境的部署
-- qa 环境：本例中使用主机 vm_124 进行 qa 环境的部署
+- dev 环境：本例中使用主机 vm_23 进行 dev 环境的部署
+- qa 环境：本例中使用主机 vm_24 进行 qa 环境的部署
 
 **部署配置**
 
 ![部署配置](./img/deploy_config.png "部署配置")
 
-- 选择 SSH Agent 远程部署，并选择 SSH Agent 主机
+- 选择`本地直连部署`
 - 部署脚本如下
 
 ```bash
 #!/bin/bash
-set -ex
+set -e
 
-env
+eval HOST_NAMES=\${${ENV_NAME}_HOST_NAMEs}
 
-if [ $ENV_NAME = "dev" ]; then
-    VM_NAME="vm_172" # 配置给 dev 环境使用的云主机的名称
-elif [ $ENV_NAME = "qa" ]; then
-    VM_NAME="vm_124" # 配置给 qa 环境使用的云主机的名称
-fi
+for h in $HOST_NAMES
+do
+eval VM_PK=\${${h}_PK}
+eval VM_PORT=\${${h}_PORT}
+eval VM_USERNAME=\${${h}_USERNAME}
+eval VM_IP=\${${h}_IP}
 
-AGENT_NAME="vm_172"
-
-eval AGENT_PK=\${${AGENT_NAME}_PK}
-eval AGENT_PORT=\${${AGENT_NAME}_PORT}
-eval VM_USERNAME=\${${VM_NAME}_USERNAME}
-eval VM_IP=\${${VM_NAME}_IP}
-
-scp -P $AGENT_PORT -i $AGENT_PK $ARTIFACT  $VM_USERNAME@$VM_IP:/cfs/microservice/backend/$PKG_FILE
-scp -P $AGENT_PORT -i $AGENT_PK $WORKSPACE/backend/restart.sh  $VM_USERNAME@$VM_IP:/cfs/microservice/backend/restart.sh
-ssh -p $AGENT_PORT -i $AGENT_PK $VM_USERNAME@$VM_IP 'cd /cfs/microservice/backend && ./restart.sh '$PKG_FILE''
+scp -P $VM_PORT -i $VM_PK $ARTIFACT  $VM_USERNAME@$VM_IP:/cfs/microservice/backend/$PKG_FILE
+scp -P $VM_PORT -i $VM_PK $WORKSPACE/backend/restart.sh  $VM_USERNAME@$VM_IP:/cfs/microservice/backend/restart.sh
+ssh -p $VM_PORT -i $VM_PK $VM_USERNAME@$VM_IP 'cd /cfs/microservice/backend && ./restart.sh '$PKG_FILE''
+done
 ```
 
 **探活配置**
@@ -177,27 +178,25 @@ tar cvf $PKG_FILE dist
 
 ![服务部署](./img/frontend_deploy_config.png "服务部署")
 
-- 使用 SSH Agent 远程部署并选择 SSH Agent 主机
+- 使用`本地直连部署`
 - 部署脚本如下
 
 ```bash
 #!/bin/bash
 set -ex
 
-if [ $ENV_NAME = "dev" ]; then
-    VM_NAME="vm_172" # 配置给 dev 环境使用的云主机的名称
-elif [ $ENV_NAME = "qa" ]; then
-    VM_NAME="vm_124" # 配置给 qa 环境使用的云主机的名称
-fi
+eval HOST_NAMES=\${${ENV_NAME}_HOST_NAMEs}
 
-AGENT_NAME="vm_172"
-eval AGENT_PK=\${${AGENT_NAME}_PK}
-eval AGENT_PORT=\${${AGENT_NAME}_PORT}
-eval VM_USERNAME=\${${VM_NAME}_USERNAME}
-eval VM_IP=\${${VM_NAME}_IP}
+for h in $HOST_NAMES
+do
+eval VM_PK=\${${h}_PK}
+eval VM_PORT=\${${h}_PORT}
+eval VM_USERNAME=\${${h}_USERNAME}
+eval VM_IP=\${${h}_IP}
 
-scp -P $AGENT_PORT -i $AGENT_PK $ARTIFACT $VM_USERNAME@$VM_IP:/cfs/microservice/frontend/$PKG_FILE
-ssh -p $AGENT_PORT -i $AGENT_PK $VM_USERNAME@$VM_IP 'cd /cfs/microservice/frontend && 'rm -rf dist' && 'tar xvf $PKG_FILE' && 'rm $PKG_FILE''
+scp -P $VM_PORT -i $VM_PK $ARTIFACT  $VM_USERNAME@$VM_IP:/cfs/microservice/frontend/$PKG_FILE
+ssh -p $VM_PORT -i $VM_PK $VM_USERNAME@$VM_IP 'cd /cfs/microservice/frontend && 'rm -rf dist' && 'tar xvf $PKG_FILE' && 'rm $PKG_FILE''
+done
 ```
 
 填写完毕后，点击`保存`按钮完成 `frontend` 服务的配置。
