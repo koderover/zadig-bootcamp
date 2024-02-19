@@ -11,6 +11,9 @@ feedback link: https://github.com/koderover/zadig-bootcamp/issues
 
 Duration: 0:01:00
 
+Positive
+: 本教程适用于 Zadig v2.2.0 及以上版本。
+
 本文介绍 GitLab 仓库管理的项目如何在 Zadig 上快速搭建，下面以 microservice-demo 项目为例，该项目包含 Vue.js 前端服务和 Golang 后端服务，以下步骤包含从 Code 到 Ship 的整个过程的演示。
 
 ![GitLab](./img/gitlab-zadig.png)
@@ -63,12 +66,13 @@ Positive
 
 ### 将 Application ID、Secret 集成到系统
 
-切换到 Zadig 系统，管理员依次点击 `系统设置` -> `集成管理` -> `代码源集成` -> 点击添加按钮。
+切换到 Zadig 系统，管理员依次点击 `系统设置` -> `集成管理` -> `代码源` -> 点击添加按钮。
 
 ![add-to-zadig](./img/add-to-zadig.png)
 
 依次填入如下已知信息：
 - `代码源`：此处选择 GitLab
+- `代码源标识`：自定义
 - `GitLab 服务 URL`：GitLab 地址
 - `Application ID`：应用创建成功后返回的 Application ID
 - `Secret`：应用创建成功后返回的 Secret
@@ -152,7 +156,7 @@ docker build -t $IMAGE -f Dockerfile .
 docker push $IMAGE
 ```
 
-## 加入环境
+## 创建环境
 
 Duration: 0:01:00
 
@@ -160,7 +164,7 @@ Duration: 0:01:00
 
 ![add-to-env](./img/onboarding_env_step.png)
 
-- 继续点击下一步完成向导流程。
+- 点击「创建环境」，完成后点击下一步完成向导流程。
 
 ![add-to-env](./img/onboarding_env_step_1.png)
 
@@ -178,11 +182,11 @@ Duration: 0:01:00
 
 使用工作流对环境中的服务进行部署更新，以 `dev` 环境为例操作步骤如下。
 
-- 点击 `microservice-demo-workflow-dev` 工作流 -> 选择服务，点击「启动任务」运行工作流。
+- 点击 `microservice-demo-workflow-dev` 工作流 -> 选择服务，点击「执行」运行工作流。
 
 ![workflow-1](./img/run_workflow_dev.png)
 
-- 触发工作流后，可查看工作流运行状况，点击服务左侧的展开图标可查看服务构建的实时日志。
+- 触发工作流后，可查看工作流运行状况，点击构建可查看服务构建的实时日志。
 
 ![workflow-3](./img/run_workflow_dev_1.png)
 
@@ -200,7 +204,7 @@ Duration: 0:02:00
 
 ![trigger-1](./img/config_dev_workflow.png)
 
-- 添加 Webhook 触发器 -> 打开 Webhook 开关 -> 添加配置 -> 填写配置
+- 添加触发器 -> 选择 Git 触发器 -> 添加配置 -> 填写配置
 
 ![trigger-1](./img/dev_workflow_trigger_2.png)
 
@@ -216,8 +220,6 @@ Duration: 0:02:00
 
 ![trigger-6](./img/gitlab_pr.png)
 
-![trigger-6](./img/workflow_info.png)
-
 - 待工作流执行完毕，进入 `项目`->`microservice-demo`->`环境`，可看到服务的镜像已被自动触发的工作流更新。
 
 ![trigger-8](./img/service_image_info.png)
@@ -230,7 +232,7 @@ Duration: 0:02:00
 
 ![IM-1](./img/config_dev_workflow.png)
 
-- 添加通知 -> 参考 [IM 通知](https://docs.koderover.com/zadig/v1.11.0/project/workflow/#im-%E7%8A%B6%E6%80%81%E9%80%9A%E7%9F%A5)填写相关配置 -> 保存修改
+- 添加通知 -> 参考 [IM 通知](https://docs.koderover.com/zadig/workflow/im/)填写相关配置 -> 保存修改
 
 ![IM-1](./img/im_config.png)
 
