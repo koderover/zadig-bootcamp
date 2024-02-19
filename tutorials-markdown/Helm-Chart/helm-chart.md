@@ -11,6 +11,9 @@ feedback link: https://github.com/koderover/zadig-bootcamp/issues
 
 Duration: 0:01:00
 
+Positive
+: 本教程适用于 Zadig v2.2.0 及以上版本。
+
 Helm 作为 K8s 生态工具之一，将互相关联的多个资源（比如：Deployment、StatefulSet、Service、Ingress...）统一打包成一个整体（Chart）交给 K8s 运行。对于应用发布者而言，可以通过 Helm 打包应用、管理应用依赖关系、管理应用版本并发布应用到 Chart 仓库。 对于使用者而言，无需编写复杂的应用部署 YAML 文件，以便捷的方式在 K8s 上查找、安装、升级、回滚、卸载应用程序。
 
 本文将介绍在 Zadig 中如何持续交付使用 Helm Chart 管理的应用。
@@ -142,8 +145,6 @@ Duration: 0:05:00
 以代码变更 pull request 事件为例，提交 pull request 后会自动触发工作流执行。
 
 ![提交代码变更](./img/pull_request.png)
-
-![触发效果](./img/webhook_effect.png)
 
 待工作流运行完毕后查看环境，可见 `vote` 服务的镜像被自动更新。
 
