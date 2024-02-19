@@ -96,7 +96,7 @@ Duration: 0:02:00
 
 ![onboarding](./img/voting_onboarding_5.png)
 
-- 点击创建服务，完成后继续点击下一步。
+- 点击创建环境，完成后继续点击下一步。
 
 ## 工作流交付
 
