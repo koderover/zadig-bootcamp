@@ -11,6 +11,9 @@ feedback link: https://github.com/koderover/zadig-bootcamp/issues
 
 Duration: 0:01:00
 
+Positive
+: 本教程适用于 Zadig v2.1.0 及以下版本。
+
 本文主要介绍如何在 Zadig 上快速接入 Jenkins 工作流，实现端到端的微服务架构体系的持续交付。
 
 Jenkins 是一个是基于 Java 开发的、非常经典的开源持续集成项目，被企业和团队广泛应用，但 Jenkins 本身并非云原生设计，随着微服务数量增长、业务架构上云 (Kubernetes) 趋势，工程师还是需要花额外时间对接基础设施、准备环境等等，平均一个工程师要切换若干个平台才能把一段代码写上线。通过现有 Jenkins 接入 Zadig 让团队不需要理解 CI/CD 概念，可以快速获得高并发的工作流和面向服务的集成环境，方便开发日常调试，不再为缺少测试环境，抢占测试环境而困扰。
