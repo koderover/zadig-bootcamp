@@ -11,6 +11,9 @@ feedback link: https://github.com/koderover/zadig-bootcamp/issues
 
 Duration: 0:01:00
 
+Positive
+: 本教程适用于 Zadig v2.2.0 及以上版本。
+
 本文主要介绍如何使用 Zadig 环境托管能力，让开发过程更顺畅。
 
 我们都知道，服务的容器化消除了线上线下的环境差异，保证了应用生命周期的环境一致性标准化，为软件交付提供了诸多好处。但上了容器以后研发过程中使用测试环境却存在诸多不便。环境的不透明，导致联调测试过程诊断问题困难；而原生 kubectl 方式操作繁琐，调试服务不方便等等。
@@ -34,7 +37,7 @@ Duration: 0:05:00
 
 如果你完全依照本教程进行托管的实践：
 - 案例中使用的 Ingress 对 K8s 集群版本有要求（1.19 及以上），请确保 K8s 集群版本符合
-- 为部署更新服务，案例中有构建部署配置环节，依赖 [Zadig 代码库](https://github.com/koderover/zadig)，请先 fork 至个人 GitHub 仓库或者下载后上传到自己的代码仓库中，并在系统设置中集成对应代码源，参考：[集成代码源](https://docs.koderover.com/zadig/settings/codehost/overview)
+- 为部署更新服务，案例中有构建部署配置环节，依赖 [Zadig 代码库](https://github.com/koderover/zadig)，请先 fork 至个人 GitHub 仓库或者下载后上传到自己的代码仓库中，并在系统设置中集成对应代码源，参考：[集成代码源](https://docs.koderover.com/zadig/settings/codehost/overview/)
 - 参考上述背景在自己的集群中部署相关服务，将案例源码 [microservice-demo](https://github.com/koderover/zadig/tree/main/examples/microservice-demo) 克隆到本地后，根据自己的域名及解析情况按需修改 [ingress 域名](https://github.com/koderover/zadig/blob/main/examples/microservice-demo/k8s-yaml/frontend/ingress.yaml#L12)，执行以下快捷操作：
 
 ``` bash
@@ -65,9 +68,9 @@ Duration: 0:01:00
 
 说明如下：
 - `环境名称`：填写环境名称，方便阅读有意义即可，此例中为 `dev`
-- `关联镜像仓库`：选择镜像仓库
+- `镜像仓库`：选择镜像仓库
 - `K8s 集群`：待托管管理的服务所在的 K8s 集群
-- `K8s 命名空间`：待托管管理的服务所在的命名空间，此例中为 `microservice`
+- `K8s 命名空间`：待托管管理的服务所在的命名空间，此例中为 `microservice-demo-env-dev`
 - `选择服务`：勾选要托管的服务（frontend + backend）并通过穿梭框
 
 点击`下一步`，进入配置服务构建步骤。
@@ -161,7 +164,7 @@ Duration: 0:04:00
 
 ### [可选]配置 Webhook 自动更新服务
 
-- 修改工作流，增加`触发器`配置并保存对工作流的修改：
+- 修改工作流，增加`Git 触发器`配置并保存对工作流的修改：
 
 ![webhook-config](./img/webhook-config.png)
 
@@ -171,17 +174,11 @@ Duration: 0:04:00
 
 ![pr-change](./img/pr-change.png)
 
-![webhook-trigger-pipeline-run](./img/webhook-trigger-pipeline-run.png)
-
-- 工作流运行完毕后，进入环境查看服务被更新成功：
-
-![show-env-updated](./img/show-env-updated.png)
-
 ## IM 通知
 
 Duration: 0:02:00
 
-- 配置工作流，参考 [IM 通知](https://docs.koderover.com/zadig/v1.11.0/project/workflow/#im-%E7%8A%B6%E6%80%81%E9%80%9A%E7%9F%A5)配置 IM 通知 -> 保存修改
+- 配置工作流，参考 [IM 通知](https://docs.koderover.com/zadig/workflow/im/)配置 IM 通知 -> 保存修改
 
 ![IM](./img/im-config.png)
 
