@@ -11,7 +11,7 @@ feedback link: https://github.com/koderover/zadig-bootcamp/issues
 
 Duration: 0:01:00
 
-本文介绍主机项目是如何通过 Zadig 快速搭建自动化流程，下面以 Microservice-demo 案例为例进行演示，该案例包含 Vue.js 前端服务和 Golang 后端服务，实现的主要功能：分别展示前后端代码的构建时间。
+本文介绍主机项目是如何通过 Zadig 快速搭建自动化流程，下面以 microservice-demo 案例为例进行演示，该案例包含 Vue.js 前端服务和 Golang 后端服务，实现的主要功能：分别展示前后端代码的构建时间。
 
 ## 准备工作
 
@@ -23,8 +23,8 @@ Duration: 0:05:00
 - 准备 Zadig 系统可访问的两台主机，分别用于部署 dev 环境和 qa 环境，并确保主机上安装 nginx，将上述 [nginx 配置](https://github.com/koderover/zadig/blob/main/examples/microservice-demo/frontend/vm/nginx.conf)放在 nginx 配置目录下并使其生效
 
 > 说明：
-> 1. 请先 fork 以上代码库，然后在 Zadig 上集成个人代码仓库，详见[文档](https://docs.koderover.com/zadig/settings/codehost/github/)
-> 2. 本教程使用的云主机与 Zadig 系统在同一内网环境，用于 dev 环境和 qa 环境的云主机名称分别为 `dev`、`qa`，IP 地址分别为 `172.16.0.23`、`172.16.0.33`，请根据您的实际主机地址修改。
+> 1. 请先 fork 以上代码库，然后在 Zadig 上集成个人代码仓库，详见[文档](https://docs.koderover.com/zadig/settings/codehost/overview/)
+> 2. 本教程使用的云主机与 Zadig 系统在同一内网环境，用于 dev 环境和 qa 环境的云主机名称分别为 `dev`、`qa`，IP 地址分别为 `172.16.0.23`、`172.16.0.24`，请根据您的实际主机地址修改。
 
 
 ## 配置主机资源
@@ -36,9 +36,10 @@ Duration: 0:03:00
 ![创建](./img/add_host.png "创建主机")
 
 参数说明：
+- 连接方式：SSH 连接
 - 主机名称：可识别有意义即可，本例中用于部署 dev 环境和 qa 环境的主机名分别为 vm_23、vm_24
+- 主机地址：主机访问地址，确保 Zadig 服务可以连通
 - 用户名：登录主机的用户名
-- 登录主机：选择 `是`
 - SSH 私钥：可通过以下步骤生成
 
 ```bash
@@ -75,6 +76,8 @@ Duration: 0:10:00
 
 **构建配置**
 
+![添加服务](./img/backend_service_build_config_0.png "添加服务")
+
 ![添加服务](./img/backend_service_build_config.png "添加服务")
 ![添加服务](./img/backend_service_build_config_1.png "添加服务")
 
@@ -100,37 +103,27 @@ make build-backend
 tar cvf $PKG_FILE backend
 ```
 
-**资源配置**
-
-分别为 `dev` 环境和 `qa` 环境配置主机资源。
-
-![资源配置](./img/resource_config.png "资源配置")
-
-- dev 环境：本例中使用主机 vm_23 进行 dev 环境的部署
-- qa 环境：本例中使用主机 vm_24 进行 qa 环境的部署
-
 **部署配置**
 
+![部署配置](./img/deploy_config_0.png "部署配置")
 ![部署配置](./img/deploy_config.png "部署配置")
 
 - 选择`本地直连部署`
+- 代码信息填写 `microservice-demo` 仓库
 - 部署脚本如下
 
 ```bash
 #!/bin/bash
-set -e
-
+set -ex
 eval HOST_NAMES=\${${ENV_NAME}_HOST_NAMEs}
-
 for h in $HOST_NAMES
 do
 eval VM_PK=\${${h}_PK}
 eval VM_PORT=\${${h}_PORT}
 eval VM_USERNAME=\${${h}_USERNAME}
 eval VM_IP=\${${h}_IP}
-
-scp -P $VM_PORT -i $VM_PK $ARTIFACT  $VM_USERNAME@$VM_IP:/cfs/microservice/backend/$PKG_FILE
-scp -P $VM_PORT -i $VM_PK $WORKSPACE/backend/restart.sh  $VM_USERNAME@$VM_IP:/cfs/microservice/backend/restart.sh
+scp -P $VM_PORT -i $VM_PK $ARTIFACT $VM_USERNAME@$VM_IP:/cfs/microservice/backend/$PKG_FILE
+scp -P $VM_PORT -i $VM_PK $WORKSPACE/zadig/examples/microservice-demo/vm/restart.sh $VM_USERNAME@$VM_IP:/cfs/microservice/backend/restart.sh
 ssh -p $VM_PORT -i $VM_PK $VM_USERNAME@$VM_IP 'cd /cfs/microservice/backend && ./restart.sh '$PKG_FILE''
 done
 ```
@@ -167,13 +160,6 @@ make install-frontend-dep build-frontend
 tar cvf $PKG_FILE dist
 ```
 
-**资源配置**
-
-同 `backend` 服务，此处不再赘述。
-
-![资源配置](./img/resource_config.png "资源配置")
-
-
 **部署配置**
 
 ![服务部署](./img/frontend_deploy_config.png "服务部署")
@@ -201,17 +187,17 @@ done
 
 填写完毕后，点击`保存`按钮完成 `frontend` 服务的配置。
 
-## 产品向导 - 加入运行环境
+## 产品向导 - 创建环境
 
 Duration: 0:01:00
 
-点击向导的`下一步`，这时，Zadig 会根据你的配置，创建两套环境以及自动化工作流。继续点击`下一步` -> `完成`结束项目向导。
+点击向导的`下一步`，配置服务关联的主机，继续点击`下一步` -> `完成`结束项目向导。
 
 ![加入环境](./img/add_to_env.png "加入环境")
 
 ![完成向导](./img/onboarding_finished.png "完成向导")
 
-## 产品向导 - 运行产品工作流
+## 产品向导 - 运行工作流
 
 Duration: 0:01:00
 
@@ -223,7 +209,7 @@ Duration: 0:01:00
 
 ![启动工作流](./img/start_task.png "启动工作流")
 
-触发工作流后，可查看工作流运行状况，点击服务左侧的展开图标可查看服务构建的实时日志。
+触发工作流后，可查看工作流运行状况，点击构建可查看服务构建的实时日志。
 
 ![工作流运行](./img/run_status.png "工作流运行")
 
@@ -248,14 +234,13 @@ Duration: 0:02:00
 
 ![配置工作流](./img/config_dev_workflow.png)
 
-- 添加触发器配置 -> 打开 Webhook 开关 -> 添加配置 -> 填写配置 -> 保存配置 -> 保存对工作流的修改
+- 添加触发器配置 -> 添加 Git 触发器 -> 填写配置 -> 保存配置 -> 保存对工作流的修改
 
 ![配置工作流](./img/add_webhook.png)
 
 - 以 `Pull Request` 事件为例，提交代码变更后，会有触发工作流的信息。可点击右侧 `Details` 链接快速跳转到触发的工作流
 
 ![提交代码变更](./img/new_pull_request.png)
-![提交代码变更](./img/webhook_effect.png)
 
 - 访问服务，可看到前后端构建时间均已修改
 
@@ -265,7 +250,7 @@ Duration: 0:02:00
 
 Duration: 0:01:00
 
-配置工作流 -> 参考 [IM 通知](https://docs.koderover.com/zadig/v1.11.0/project/workflow/#im-%e7%8a%b6%e6%80%81%e9%80%9a%e7%9f%a5)填写相关配置 -> 保存修改。
+配置工作流 -> 参考 [IM 通知](https://docs.koderover.com/zadig/workflow/im/)填写相关配置 -> 保存修改。
 
 ![IM 配置](./img/im_config.png)
 

@@ -11,6 +11,9 @@ feedback link: https://github.com/koderover/zadig-bootcamp/issues
 
 Duration: 0:01:00
 
+Positive
+: 本教程适用于 Zadig v2.2.0 及以上版本。
+
 本文介绍如何在 Zadig 上快速搭建 Spring Boot 项目。Spring Boot 是构建 Java 后端应用程序的一种非常流行的框架，本文以 [voting-app] (https://github.com/koderover/zadig/tree/main/examples/voting-app) 案例作为实践，演示从 Code 到 Ship 的整个过程。
 
 ## 准备工作
@@ -73,7 +76,7 @@ docker build -t $IMAGE -f Dockerfile.j .
 docker push $IMAGE
 ```
 
-## 加入环境
+## 创建环境
 
 Duration: 0:01:00
 
@@ -81,7 +84,7 @@ Duration: 0:01:00
 
 ![加入环境](./img/join_env.png)
 
-继续点击下一步完成向导流程。
+点击「创建环境」，完成后点击下一步完成向导流程。
 
 ![加入环境](./img/join_env_2.png)
 
@@ -95,12 +98,12 @@ Duration: 0:01:00
 
 使用工作流对 worker 服务进行部署更新，以 dev 环境为例操作步骤如下。
 
-- 点击运行 `spring-boot-demo-workflow-dev` 工作流 -> 选择 worker 服务，点击「启动任务」运行工作流。
+- 点击运行 `spring-boot-demo-workflow-dev` 工作流 -> 选择 worker 服务，点击「执行」运行工作流。
 
 ![运行工作流](./img/run_workflow_1.png)
 
 
-- 触发工作流后，可查看工作流运行状况，点击服务左侧的展开图标可查看服务构建的实时日志。
+- 触发工作流后，可查看工作流运行状况，点击构建可查看服务构建的实时日志。
 
 ![运行工作流](./img/run_workflow_2.png)
 
@@ -118,7 +121,7 @@ Duration: 0:02:00
 
 ![配置工作流](./img/config_workflow.png)
 
-- 添加 Webhook 触发器 -> 打开 Webhook 开关 -> 添加配置 -> 填写配置 -> 保存 Webhook 配置 -> 保存对工作流的修改
+- 添加触发器 -> 选择 Git 触发器 -> 添加配置 -> 填写配置 -> 保存 Webhook 配置 -> 保存对工作流的修改
 
 ![配置工作流](./img/config_webhook.png)
 
@@ -130,7 +133,6 @@ Duration: 0:02:00
 
 ![代码变更](./img/pull_request.png)
 
-![webhook-效果](./img/pull_request_webhook_effect.png)
 
 - 待工作流执行完毕，进入项目的环境中，可看到服务的镜像已被自动触发的工作流更新
 
@@ -144,7 +146,7 @@ Duration: 0:01:00
 
 ![配置工作流](./img/config_workflow.png)
 
-- 添加通知 -> 参考 [IM 通知](https://docs.koderover.com/zadig/v1.11.0/project/workflow/#im-%e7%8a%b6%e6%80%81%e9%80%9a%e7%9f%a5)填写相关配置 -> 保存修改
+- 添加通知 -> 参考 [IM 通知](https://docs.koderover.com/zadig/workflow/im/)填写相关配置 -> 保存修改
 
 ![配置通知](./img/config_im_1.png)
 
