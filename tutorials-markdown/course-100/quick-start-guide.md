@@ -672,10 +672,10 @@ Duration: 5
 2. 论坛 <https://community.koderover.com/>
 
 ### 课程支持
-![](images/pre-sales.png)
+![](images/pre-sales-bella.png)
 扫码添加 Zadig 产品助理
 
-![](images/wc-KodeRover.png)
+![](images/wechat-platform.png)
 关注 KodeRover 获取更多干货
 
 
