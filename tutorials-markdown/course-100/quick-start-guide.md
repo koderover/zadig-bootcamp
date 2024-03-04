@@ -672,17 +672,11 @@ Duration: 5
 2. 论坛 <https://community.koderover.com/>
 
 ### 课程支持
+![](images/pre-sales.png)
+扫码添加 Zadig 产品助理
 
-扫描下方二维码，进入本课程专属微信群。
-
-![](images/course-support.png)
-扫码进入课程支持群
-
-![](images/pre-sales.jpg)
-扫码联系 Zadig 售前
-
-![](images/wc-KodeRover.jpg)
-扫码关注 KodeRover 微信公众号
+![](images/wc-KodeRover.png)
+关注 KodeRover 获取更多干货
 
 
 ### 彩蛋
