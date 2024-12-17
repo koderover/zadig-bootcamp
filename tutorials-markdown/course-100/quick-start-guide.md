@@ -13,9 +13,11 @@ Feedback Link:  https://github.com/koderover/zadig-bootcamp/issues
 ## 准备环境
 Duration: 2
 
-1. 准备 Zadig 试用环境：[在线试用](https://koderover.com/trial)或者[下载安装](https://koderover.com/installer)。
-2. 将示例代码 Fork 到个人账户中，为变更这套代码做好准备。
-3. 在 GitLab 中创建用于代码仓库集成接入的应用认证密钥。
+### 学习内容
+
+- 准备 Zadig 试用环境：[在线试用](https://koderover.com/trial)或者[下载安装](https://koderover.com/installer)。
+- 将示例代码 Fork 到个人账户中，为变更这套代码做好准备。
+- 在 GitLab 中创建用于代码仓库集成接入的应用认证密钥。
 
 ### 示例应用代码
 
@@ -27,35 +29,28 @@ Duration: 2
 * 后端：运行在 20219 端口上，由几个简单的示例 api 组成。
 * 前后端是松耦合的结构，前后端开发人员可以在同一套环境中各自独立开发迭代。
 
-代码库位于：<https://gitlab.com/kr-poc/zadig-training.git>
-
-操作说明：
-
-1. 访问并登录 [GitLab](https://gitlab.com) 个人账户。没有账号的注册一个。
-2. 将示例代码库 Fork 到自己的账户中。
+代码库位于：<https://gitlab.com/kr-poc/zadig-training.git>，将该代码库 fork 到个人账号中。
 
 ### 创建 GitLab 集成密钥
 
-参考文档：<<https://docs.koderover.com/zadig/settings/codehost/gitlab/> >
+具体创建过程，参考 [GitLab 集成文档](https://docs.koderover.com/zadig/settings/codehost/gitlab/)
 
-创建过程中需要填写 Zadig 的回调网址：
-
-`https://course.koderover.com/api/directory/codehosts/callback`
+创建过程中需要填写 Zadig 的回调网址为：`https://course.koderover.com/api/directory/codehosts/callback`
 
 创建成功的应用认证密钥，如下图所示：
 
 ![GitLab Auth key](images/gitlab-app.png)
 
-将 `Application ID` 和 `Secret` 复制在写字板中备用。
+将 `Application ID` 和 `Secret` 复制备用。
 
 <!-- ------------------------ -->
 ## 初始化项目
 Duration: 3
 
 ### 学习内容
-* 初始化一个 K8s YAML 项目
-* 集成个人代码源
-* 配置项目中的服务、构建、环境和工作流
+- 初始化一个 K8s YAML 项目
+- 集成个人代码源
+- 配置项目中的服务、构建、环境和工作流
 
 ### 操作流程
 
@@ -65,14 +60,14 @@ Duration: 3
 
 在项目模块中，点击新建项目，输入项目基本信息。
 
-![新建项目](images/init-project-2.png)
-
 1. 填写项目名称
 2. 填写项目描述
 3. 项目类型：选择 “K8s YAML 项目”
 4. 点击 “立即新建” 按钮，开始项目初始向导。
 
-查看 Zadig 为本项目默认准备的初始环境和工作流，包含两套环境和三条工作流。
+![新建项目](images/init-project-2.png)
+
+查看 Zadig 系统内置的环境和工作流，包含两套环境和三条工作流。
 
 ![新建项目](images/init-project-3.png)
 
@@ -82,14 +77,11 @@ Duration: 3
 
 从这里开始要配置该软件所包含的各个微服务定义，代码文件夹 course-100 中的 K8s-yaml 子目录提供了所需要的服务定义描述。
 
-下面将开始接入你 Fork 到个人账户中的 zadig-training 代码库。
-
-1. 点击这个圆形按钮
-2. 开始对接目标代码库（你 GitLab 个人账户中的代码库）
+点击“从代码库同步”按钮，开始对接代码库（你 GitLab 个人账户中的 zadig-training 代码库）。
 
 ![新建项目](images/init-project-5.png)
 
-1. 点击 “代码源” 的下拉菜单，你可以看到系统管理员已经接入了若干可用的代码仓库，而这些不是你个人的代码仓库。
+1. 点击 “代码源” 的下拉菜单
 2. 点击 “新增代码源” 按钮
 3. 开始接入 GitLab 个人代码仓库
 
@@ -128,7 +120,7 @@ Duration: 3
 1. 点击 backend 服务名称，查看相关定义文件
 2. 点击 frontend 服务名称，确认相关定义文件
 
-接下来为每个服务添加构建配置。
+接下来为 backend 和 frontend 服务添加构建配置。
 
 #### 后端服务构建配置
 
@@ -207,7 +199,7 @@ Duration: 5
 
 ![日常开发](images/dev-op-1.png)
 
-1. 来到 “环境” 标签页
+1. 点击 “环境” 标签页
 2. 这里可以看到前后端服务在当前的 dev 环境中所使用的容器镜像
 3. 点击这个前端服务入口 URL，可以访问前端访问的页面，校验应用状态。
 
@@ -222,6 +214,7 @@ git branch feature/change-color
 git switch feature/change-color
 git push origin feature/change-color
 ```
+
 ![日常开发](images/dev-op-3.png)
 
 1. 用 vs code 打开源代码目录，查看并修改 `HelloWorld_rc.vue` 文件的第 70 行代码。
@@ -535,6 +528,7 @@ Duration: 2
 - 论坛 <https://community.koderover.com/>
 
 ### 课程支持
+
 ![](images/pre-sales-bella.png)
 
 扫码添加 Zadig 产品助理
