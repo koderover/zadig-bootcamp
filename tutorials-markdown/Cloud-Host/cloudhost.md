@@ -116,6 +116,7 @@ tar cvf $PKG_FILE backend
 #!/bin/bash
 set -ex
 eval HOST_NAMES=\${${ENV_NAME}_HOST_NAMEs}
+IFS=","
 for h in $HOST_NAMES
 do
 eval VM_PK=\${${h}_PK}
@@ -172,7 +173,7 @@ tar cvf $PKG_FILE dist
 set -ex
 
 eval HOST_NAMES=\${${ENV_NAME}_HOST_NAMEs}
-
+IFS=","
 for h in $HOST_NAMES
 do
 eval VM_PK=\${${h}_PK}
